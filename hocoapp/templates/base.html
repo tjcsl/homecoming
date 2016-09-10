@@ -1,3 +1,5 @@
+{% load static %}
+
 <html>
     <head>
         <title>{% block title %}Homecoming{% endblock %}</title>
@@ -7,6 +9,7 @@
         {% endblock $}
 
         {% block css %}
+            <link rel="stylesheet" href="{% static 'css/tjcsl.css' %}">
         {% endblock %}
 
         {% block js %}
