@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'hocoapp.apps.base',
     'hocoapp.apps.users',
     'hocoapp.apps.scores',
+    'hocoapp.apps.events'
 ]
 
 MIDDLEWARE = [
