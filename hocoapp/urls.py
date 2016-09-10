@@ -24,7 +24,6 @@ from .apps.events import views as event_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', base_views.index_view),
-    url(r'^login/$', auth_views.login, name='login'),
-    url(r'^logout/$', auth_views.logout, name='logout'),
+    url(r'^$', base_views.index_view, name='index'),
+    url(r'^oauth/$', user_views.handle_oauth, name='handle_oauth'),
 ]

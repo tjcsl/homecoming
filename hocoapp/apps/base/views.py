@@ -1,18 +1,16 @@
 from django.shortcuts import render
 from django.conf import settings
+from django.urls import reverse
+from django.http import HttpResponse
+
+from hocoapp.utils import is_authenticated, is_admin
+
 
 def index_view(request):
-    if request.user.is_authenticated():
-        # Do something
-        pass
+    if is_authenticated(request):
+        return HttpResponse("You have successfully authenticated. Your username is {}".format(request.session["uid"]))
 
-    oauth_state = ""
-
-    oauth_href = settings.OAUTH_PROVIDER + \
-                 "?response_type=code" + \
-                 "&client_id={}".format(settings.OAUTH_CLIENT_ID) + \
-                 "&redirect_uri={}".format(settings.OAUTH_REDIRECT_URI) + \
-                 "&scope=read&state={}".format(oauth_state)
+    oauth_href = reverse("handle_oauth")
 
     context = {
         "oauth_href": oauth_href
