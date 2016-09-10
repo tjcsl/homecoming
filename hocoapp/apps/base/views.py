@@ -6,11 +6,13 @@ def index_view(request):
         # Do something
         pass
 
-    oauth_href = "https://ion.tjhsst.edu/oauth/authorize" + \
+    oauth_state = ""
+
+    oauth_href = settings.OAUTH_PROVIDER + \
                  "?response_type=code" + \
                  "&client_id={}".format(settings.OAUTH_CLIENT_ID) + \
                  "&redirect_uri={}".format(settings.OAUTH_REDIRECT_URI) + \
-                 "&scope=read&state=".format(settings.OAUTH_STATE)
+                 "&scope=read&state={}".format(oauth_state)
 
     context = {
         "oauth_href": oauth_href
