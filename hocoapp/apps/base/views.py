@@ -29,5 +29,5 @@ def index_view(request):
 @require_http_methods(["POST"])
 def git_webhook(request):
     command = ["git", "pull"]
-    subprocess.check_output(command).decode()
+    print(subprocess.check_output(command).decode())
     return HttpResponse("Successful")

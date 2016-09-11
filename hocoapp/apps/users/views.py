@@ -15,9 +15,11 @@ def handle_oauth(request):
         settings.CLIENT_ID, redirect_uri=settings.REDIRECT_URI, scope=["read"])
     if 'error' in request.GET:
         context = {
-            "message": request.GET["error"],
+            "message": request.GET["error"].replace("_", " ").title(),
             "oauth_href": reverse("handle_oauth")
         }
+        if "uid" in request.session:
+            del request.session["uid"]
         return render(request, "landing.html", context)
     if 'code' not in request.GET:
         authorization_url, state = oauth.authorization_url(
