@@ -1,5 +1,54 @@
 {% extends "base.html" %}
 
+{% load static %}
+
+{% block css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block js %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'js/nav.js' %}">
+    </script>
+{% endblock %}
+
 {% block body %}
-    Your username is {{ username }}.
+<div class="header">
+    <div class="title">
+        Homecoming 2016
+    </div>
+    <div class="right has-dropdown">
+        <li class="username">
+            <div class="dropdown-item-wrapper">
+                <i class="fa fa-user"></i>
+                <span class="user-name">{{ username }}</span>
+                <i class="fa fa-caret-down"></i>
+            </div>
+        </li>
+        <ul class="dropdown-menu" style="display: none; top: 10px">
+            <div class="arrow" style="right: 37px;"></div>
+            <li>
+                <a href="/logout">
+                    <i class="fa fa-sign-out"></i>
+                    Logout
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="content">
+
+<div class="events">
+    {{ events }}
+</div>
+<div class="schedule">
+    {{ schedule }}
+</div>
+<div class="scoreboard">
+    {{ scoreboard }}
+</div>
+
+</div>
 {% endblock %}

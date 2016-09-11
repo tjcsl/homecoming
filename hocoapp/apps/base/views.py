@@ -16,7 +16,14 @@ def index_view(request):
         }
         return render(request, 'landing.html', context)
 
+    events = "events"
+    schedule = "schedule"
+    scoreboard = "scoreboard"
+
     context = {
-        "username": request.session["uid"]
+        "username": request.session["uid"],
+        "events": events,
+        "schedule": schedule,
+        "scoreboard": scoreboard
     }
     return render(request, 'home.html', context)
