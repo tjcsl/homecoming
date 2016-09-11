@@ -126,6 +126,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS = (
+    os.path.join(PROJECT_ROOT, 'static/'),
+)
+
 SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
 
 try:
