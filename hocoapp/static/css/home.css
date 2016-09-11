@@ -8,6 +8,11 @@ div.title {
     text-align: center;
 }
 
+.header .dropdown-menu {
+    margin-top: 42px;
+    right: 5px;
+}
+
 .header .username {
 }
 
