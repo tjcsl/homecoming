@@ -1,4 +1,4 @@
-from django.shortcuts import redirect
+from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.conf import settings
 
@@ -13,6 +13,12 @@ import json
 def handle_oauth(request):
     oauth = OAuth2Session(
         settings.CLIENT_ID, redirect_uri=settings.REDIRECT_URI, scope=["read"])
+    if 'error' in request.GET:
+        context = {
+            "message": request.GET["error"],
+            "oauth_href": reverse("handle_oauth")
+        }
+        return render(request, "landing.html", context)
     if 'code' not in request.GET:
         authorization_url, state = oauth.authorization_url(
             "https://ion.tjhsst.edu/oauth/authorize/")
