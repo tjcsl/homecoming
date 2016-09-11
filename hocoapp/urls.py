@@ -26,5 +26,4 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', base_views.index_view, name='index'),
     url(r'^oauth/$', user_views.handle_oauth, name='handle_oauth'),
-    url(r'^githook/$', base_views.git_webhook, name="github_webhook")
 ]
