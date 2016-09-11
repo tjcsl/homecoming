@@ -1,12 +1,12 @@
+<!DOCTYPE html>
+
 {% load static %}
 
 <html>
     <head>
         <title>{% block title %}Homecoming{% endblock %}</title>
 
-        {% block meta %}
-            {% include "meta.html" %}
-        {% endblock $}
+        {% include "meta.html" %}
 
         {% block css %}
             <link rel="stylesheet" href="{% static 'css/tjcsl.css' %}">

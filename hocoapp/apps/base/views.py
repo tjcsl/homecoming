@@ -7,12 +7,16 @@ from hocoapp.utils import is_authenticated, is_admin
 
 
 def index_view(request):
-    if is_authenticated(request):
-        return HttpResponse("You have successfully authenticated. Your username is {}".format(request.session["uid"]))
+    if not is_authenticated(request):
+        oauth_href = reverse("handle_oauth")
 
-    oauth_href = reverse("handle_oauth")
+        context = {
+            "oauth_href": oauth_href
+        }
+        return render(request, 'landing.html', context)
 
     context = {
-        "oauth_href": oauth_href
+        "username": request.session["uid"]
     }
-    return render(request, 'landing.html', context)
+    return render(request, 'home.html', context)
+
