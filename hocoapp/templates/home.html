@@ -22,7 +22,7 @@
         <li class="username">
             <div class="dropdown-item-wrapper">
                 <i class="fa fa-user"></i>
-                <span class="user-name">{{ username }}</span>
+                <span class="user-name">{{ name }}</span>
                 <i class="fa fa-caret-down"></i>
             </div>
         </li>
@@ -40,14 +40,17 @@
 
 <div class="content">
 
+<div class="scoreboard">
+    <h2>Scoreboard</h2>
+    {{ scoreboard }}
+</div>
 <div class="events">
+    <h2>Events</h2>
     {{ events }}
 </div>
 <div class="schedule">
+    <h2>Schedule</h2>
     {{ schedule }}
-</div>
-<div class="scoreboard">
-    {{ scoreboard }}
 </div>
 
 </div>

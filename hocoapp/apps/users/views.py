@@ -30,6 +30,8 @@ def handle_oauth(request):
                                   code=request.GET['code'], client_secret=settings.CLIENT_SECRET)
         profile = oauth.get("https://ion.tjhsst.edu/api/profile")
         user_data = json.loads(profile.content.decode())
+        request.session["name"] = user_data["nickname"] or user_data["short_name"]
+        request.session["class"] = user_data["graduation_year"]
         request.session["uid"] = user_data["ion_username"]
         return redirect(reverse("index"))
     except InvalidGrantError:

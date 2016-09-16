@@ -22,6 +22,7 @@ def index_view(request):
 
     context = {
         "username": request.session["uid"],
+        "name": request.session["name"],
         "events": events,
         "schedule": schedule,
         "scoreboard": scoreboard

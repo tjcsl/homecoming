@@ -22,11 +22,13 @@ div.title {
 }
 
 .content > div {
-    height: 500px;
+    position: relative;
+    /*height: 500px;
     float: left;
     padding: 10px;
     margin: 0;
-    position: relative;
+    */
+    margin-bottom: 15px;
 }
 
 .events {
