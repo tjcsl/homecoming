@@ -22,5 +22,5 @@ def admin_required(f):
         if(is_admin(args[0])):
             return f(*args, **kwargs)
         messages.error(args[0], "You must be an admin to access this page.")
-        return redirect(reverse("homepage"))
+        return redirect(reverse("index"))
     return wrapper
