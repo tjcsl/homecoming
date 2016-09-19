@@ -12,8 +12,7 @@ def login_required(f):
     def wrapper(*args, **kwargs):
         if(is_authenticated(args[0])):
             return f(*args, **kwargs)
-        messages.error(args[0], "You must be logged in to access this page.")
-        return redirect(reverse("login_page"))
+        return redirect(reverse("handle_oauth"))
     return wrapper
 
 

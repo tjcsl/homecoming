@@ -22,11 +22,3 @@ def index_view(request):
         "scoreboard": scoreboard
     }
     return render(request, 'home.html', context)
-
-
-def oauth_login_view(request):
-    oauth_href = reverse("handle_oauth")
-    context = {
-        "oauth_href": oauth_href
-    }
-    return render(request, 'landing.html', context)

@@ -26,6 +26,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', base_views.index_view, name='index'),
     url(r'^oauth/$', user_views.handle_oauth, name='handle_oauth'),
-    url(r'^logout/$', auth_views.logout, {'next_page': '/login/'}, name='logout'),
-    url(r'^login/$', base_views.oauth_login_view, name='login_page')
+    url(r'^logout/$', auth_views.logout, {'next_page': '/'}, name='logout')
 ]
