@@ -12,6 +12,7 @@ class Event(models.Model):
     time = models.DateTimeField()
 
     @classmethod
-    def create(cls, name=None, description=None, time=None):
+    def create(cls, name, description, time):
         event = cls(name=name, description=description, time=time)
+        event.save()
         return event

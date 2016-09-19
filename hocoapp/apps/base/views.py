@@ -2,19 +2,13 @@ from django.shortcuts import render
 from django.conf import settings
 from django.urls import reverse
 
-from hocoapp.utils import is_authenticated, is_admin
+from hocoapp.decorators import login_required
 
 import subprocess
 
 
+@login_required
 def index_view(request):
-    if not is_authenticated(request):
-        oauth_href = reverse("handle_oauth")
-
-        context = {
-            "oauth_href": oauth_href
-        }
-        return render(request, 'landing.html', context)
 
     events = "events"
     schedule = "schedule"
@@ -28,3 +22,11 @@ def index_view(request):
         "scoreboard": scoreboard
     }
     return render(request, 'home.html', context)
+
+
+def oauth_login_view(request):
+    oauth_href = reverse("handle_oauth")
+    context = {
+        "oauth_href": oauth_href
+    }
+    return render(request, 'landing.html', context)

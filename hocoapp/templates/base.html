@@ -3,23 +3,31 @@
 {% load static %}
 
 <html>
-    <head>
-        <title>{% block title %}Homecoming{% endblock %}</title>
+<head>
+    <title>{% block title %}Homecoming{% endblock %}</title>
 
-        {% include "meta.html" %}
-        <link rel="stylesheet" href="{% static 'css/tjcsl.css' %}">
-        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"/>
-        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:100italic,400italic,700italic,100,400,700"/>
-        {% block css %} 
-        {% endblock %}
+    {% include "meta.html" %}
+    <link rel="stylesheet" href="{% static 'css/tjcsl.css' %}">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:100italic,400italic,700italic,100,400,700"/>
+    {% block css %} 
+    {% endblock %}
 
-        {% block js %}
-            <script type="text/javascript" src="{% static 'js/vendor/jquery-1.10.2.min.js' %}"></script>
-            <script type="text/javascript" src="{% static 'js/vendor/jquery-ui.min.js' %}"></script>
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}
-        {% endblock %}
-    </body>
+    {% block js %}
+    <script type="text/javascript" src="{% static 'js/vendor/jquery-1.10.2.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/vendor/jquery-ui.min.js' %}"></script>
+    {% endblock %}
+</head>
+<body>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    {% block body %}
+    {% endblock %}
+</body>
 </html>
