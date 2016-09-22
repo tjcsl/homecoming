@@ -1,0 +1,37 @@
+h1 {
+    font-size:20px;
+    float:none;
+    text-align:center;
+}
+ul.right {
+    position:absolute;
+    right:5px;
+    top:0;
+    margin-top:-2px;
+}
+.footer {
+    position:fixed;
+    bottom:5px;
+    right:5px;
+    font-size:12px;
+}
+h1 {
+    margin:6px 0;
+}
+.main {
+    width:100%;
+    max-width:none;
+    position:initial;
+}
+a.title {
+    color: white;
+}
+div.title {
+    font-size: 20px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    height: 30px;
+    position: absolute;
+    text-align: center;
+}

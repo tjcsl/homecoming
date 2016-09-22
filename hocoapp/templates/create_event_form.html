@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block css %}
+{{ block.super }}
+<link rel="stylesheet" type="text/css" href="{% static 'css/jquery.datetimepicker.min.css' %}" />
+{% endblock %}
+
+{% block js %}
+{{ block.super }}
+<script type="text/javascript" src="{% static 'js/jquery.datetimepicker.full.min.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+
+<div class="content">
+
+    <form method="post">
+        {% csrf_token %}
+        {% for field in form %}
+        <p>
+            {{ field.label }}:<br />
+            {{ field }}
+            {{ field.errors }}
+        </p>
+        {% endfor %}
+
+        <input type="submit" value="Submit" />
+    </form>
+
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+    $.datetimepicker.setLocale('en');
+    $(".datetimepicker").datetimepicker();
+});
+
+
+</script>
+{% endblock %}

@@ -1,20 +1,4 @@
-div.title {
-    font-size: 20px;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    height: 30px;
-    position: absolute;
-    text-align: center;
-}
 
-.header .dropdown-menu {
-    margin-top: 42px;
-    right: 5px;
-}
-
-.header .username {
-}
 
 .content {
     width: 100%;

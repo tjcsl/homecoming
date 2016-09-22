@@ -3,6 +3,7 @@ from django.conf import settings
 from django.urls import reverse
 
 from hocoapp.decorators import login_required
+from hocoapp.apps.events.models import Event
 
 import subprocess
 
@@ -10,13 +11,11 @@ import subprocess
 @login_required
 def index_view(request):
 
-    events = "events"
+    events = Event.objects.all()
     schedule = "schedule"
     scoreboard = "scoreboard"
 
     context = {
-        "username": request.session["uid"],
-        "name": request.session["name"],
         "events": events,
         "schedule": schedule,
         "scoreboard": scoreboard

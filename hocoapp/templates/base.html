@@ -11,12 +11,14 @@
     <link rel="stylesheet" href="{% static 'css/tjcsl.css' %}">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"/>
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:100italic,400italic,700italic,100,400,700"/>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
     {% block css %} 
     {% endblock %}
-
-    {% block js %}
     <script type="text/javascript" src="{% static 'js/vendor/jquery-1.10.2.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/vendor/jquery-ui.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/nav.js' %}">
+    </script>
+    {% block js %}
     {% endblock %}
 </head>
 <body>
@@ -27,8 +29,26 @@
         {% endfor %}
     </ul>
     {% endif %}
+<div class="header">
+    <a href="/" class="title">
+    <div class="title">
+        Homecoming 2016
+    </div>
+    </a>
+    <div class="right">
+        <li class="username">
+                <i class="fa fa-user"></i>
+                <span class="user-name">{{ request.session.name }}</span>
+            </div>
+        </li>
+    </div>
+</div>
 
+<div class="content">
     {% block body %}
     {% endblock %}
+    <div class="footer">
+    This application developed by Omkar Kulkarni (2019), Eric Wang (2017), and James Houghton (2017).
+</div>
 </body>
 </html>

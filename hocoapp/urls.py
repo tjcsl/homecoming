@@ -26,5 +26,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', base_views.index_view, name='index'),
     url(r'^oauth/$', user_views.handle_oauth, name='handle_oauth'),
-    url(r'^logout/$', auth_views.logout, {'next_page': '/'}, name='logout')
+    url(r'^logout/$', auth_views.logout, {'next_page': '/'}, name='logout'),
+    url(r'^events/create/$', event_views.create_event_view, name="create_event_page"),
+
 ]

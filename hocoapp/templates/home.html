@@ -9,36 +9,10 @@
 
 {% block js %}
     {{ block.super }}
-    <script type="text/javascript" src="{% static 'js/nav.js' %}">
-    </script>
+
 {% endblock %}
 
 {% block body %}
-<div class="header">
-    <div class="title">
-        Homecoming 2016
-    </div>
-    <div class="right has-dropdown">
-        <li class="username">
-            <div class="dropdown-item-wrapper">
-                <i class="fa fa-user"></i>
-                <span class="user-name">{{ name }}</span>
-                <i class="fa fa-caret-down"></i>
-            </div>
-        </li>
-        <ul class="dropdown-menu" style="display: none; top: 10px">
-            <div class="arrow" style="right: 37px;"></div>
-            <li>
-                <a href="/logout">
-                    <i class="fa fa-sign-out"></i>
-                    Logout
-                </a>
-            </li>
-        </ul>
-    </div>
-</div>
-
-<div class="content">
 
 <div class="scoreboard">
     <h2>Scoreboard</h2>
@@ -46,7 +20,11 @@
 </div>
 <div class="events">
     <h2>Events</h2>
-    {{ events }}
+    {% for event in events %}
+        <h2>{{ event.name }}</h2>
+        <p>{{ event.description }}</p>
+        <h3>{{ event.time }}</h3>
+    {% endfor %}
 </div>
 <div class="schedule">
     <h2>Schedule</h2>
