@@ -16,14 +16,34 @@
 
 <div class="scoreboard">
     <h2>Scoreboard</h2>
-    {{ scoreboard }}
+    <table>
+        <thead>
+            <tr>
+                <td><h3>Event Name</h3></td>
+                <td><h3>Freshman Score</h3></td>
+                <td><h3>Sophomore Score</h3></td>
+                <td><h3>Junior Score</h3></td>
+                <td><h3>Senior Score</h3></td>
+        </thead>
+        <tbody>
+        {% for scoreboard in scoreboards %}
+            <tr>
+                <td>{{ scoreboard.event.name }}</td>
+                <td>{{ scoreboard.freshman_score}}</td>
+                <td>{{ scoreboard.sophomore_score }}</td>
+                <td>{{ scoreboard.junior_score }}</td>
+                <td>{{ scoreboard.senior_score }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 </div>
 <div class="events">
     <h2>Events</h2>
     {% for event in events %}
-        <h2>{{ event.name }}</h2>
+        <h3>{{ event.name }}</h3>
         <p>{{ event.description }}</p>
-        <h3>{{ event.time }}</h3>
+        <h4>{{ event.time }}</h4>
     {% endfor %}
 </div>
 <div class="schedule">
