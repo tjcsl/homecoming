@@ -13,7 +13,7 @@ ul.right {
     position:fixed;
     bottom:5px;
     right:5px;
-    font-size:12px;
+    font-size:10px;
 }
 h1 {
     margin:6px 0;
@@ -34,4 +34,10 @@ div.title {
     height: 30px;
     position: absolute;
     text-align: center;
+}
+@media screen and (max-device-width: 640px) {
+    .footer {
+        position: static;
+        text-align: center;
+    }
 }
