@@ -45,3 +45,9 @@
 .overview .box .score {
     font-size: 2em;
 }
+
+@media screen and (max-device-width: 640px) {
+    .scoreboard table {
+        width: 100%;
+    }
+}

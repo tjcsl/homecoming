@@ -40,4 +40,12 @@ div.title {
         position: static;
         text-align: center;
     }
+    .hide-sm {
+        display: none;
+    }
+}
+@media screen and (min-device-width: 640px) {
+    .show-sm {
+        display: none;
+    }
 }
