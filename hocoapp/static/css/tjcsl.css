@@ -235,6 +235,10 @@ ul.right > li > a.button.small-button {
     max-width: 800px;
 }
 
+.clearfix {
+    overflow: auto;
+}
+
 @media (min-width: 800px) {
     .main {
         position: absolute;

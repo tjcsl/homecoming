@@ -86,18 +86,25 @@
         </div>
     {% endfor %}
 </div>
-<div class="schedule">
-    <h2>Schedule</h2>
-    {{ schedule }}
+<div class="schedule clearfix">
+    <h2 class="pull-left">Schedule</h2>
+    <div class="pull-right"><button data-calendar-view="month">Month</button> <button data-calendar-view="day">Day</button></div>
 </div>
 <div id="calendar"></div>
 
 </div>
 <script type="text/javascript">
 var calendar = $("#calendar").calendar({
+        view: "month",
         events_source: "{% url 'calendar_source' %}",
         tmpl_path: "/static/tmpls/",
         weekbox: false
+});
+$("button[data-calendar-view]").each(function() {
+    var $this = $(this);
+    $this.click(function() {
+        calendar.view($this.data("calendar-view"));
+    });
 });
 </script>
 {% endblock %}
