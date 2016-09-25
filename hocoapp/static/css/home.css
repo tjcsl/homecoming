@@ -64,8 +64,6 @@
     border-top: none;
 }
 
-@media screen and (max-device-width: 640px) {
-    .scoreboard table {
-        width: 100%;
-    }
+.scoreboard table {
+    width: 100%;
 }
