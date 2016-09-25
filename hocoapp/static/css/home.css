@@ -30,6 +30,11 @@
 .overview {
     text-align: center;
 }
+.overview .box-container {
+	display: inline-block;
+	margin: 0 auto;
+	width: 284px;
+}
 .overview .box {
     display: inline-block;
     background-color: #ddd;
