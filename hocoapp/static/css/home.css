@@ -36,10 +36,9 @@
     padding: 15px;
     margin: 5px;
     width: 100px;
-    height: 100px;
+    height: 80px;
 }
 .overview .box .class {
-    margin-top:15px;
     font-size: 1.5em;
 }
 .overview .box .score {
@@ -47,6 +46,7 @@
 }
 
 .panel {
+    margin: 0 auto;
     margin-bottom: 10px;
     max-width: 400px;
 }
