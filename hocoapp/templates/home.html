@@ -94,6 +94,10 @@
 
 </div>
 <script type="text/javascript">
-    var calendar = $("#calendar").calendar({events_source: "{% url 'calendar_source' %}", tmpl_path: "/static/tmpls/"});         
+var calendar = $("#calendar").calendar({
+        events_source: "{% url 'calendar_source' %}",
+        tmpl_path: "/static/tmpls/",
+        weekbox: false
+});
 </script>
 {% endblock %}
