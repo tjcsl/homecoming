@@ -36,6 +36,14 @@
     </div>
     </a>
     <div class="right">
+        {% if is_admin %}
+        <li class="username"> 
+            <i class="fa fa-plus"></i>
+            <a href="{% url 'create_event_page' %}" style="color: white;">
+                <span class="user-name">Create Event</span>
+            </a>
+        </li>
+        {% endif %}
         <li class="username">
                 <i class="fa fa-user"></i>
                 <span class="user-name">{{ request.session.name }}</span>

@@ -29,5 +29,6 @@ urlpatterns = [
     url(r'^logout/$', auth_views.logout, {'next_page': '/'}, name='logout'),
     url(r'^events/create/$', event_views.create_event_view, name="create_event_page"),
     url(r'^events/calendar/$', event_views.calendar_data_view, name="calendar_source"),
+    url(r'^scores/edit/(?P<event_id>\d+)/$', score_views.edit_scores_view, name="edit_scores")
 
 ]

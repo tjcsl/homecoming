@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block css %}
+{{ block.super }}
+{% endblock %}
+
+{% block js %}
+{{ block.super }}
+{% endblock %}
+
+{% block body %}
+
+<div class="content">
+
+    <h2>Editing Scores for {{ scoreboard.event.name }}</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        {% for field in form %}
+        <p>
+            {{ field.label }}:<br />
+            {{ field }}
+            {{ field.errors }}
+        </p>
+        {% endfor %}
+
+        <input type="submit" value="Submit" />
+    </form>
+
+</div>
+{% endblock %}
