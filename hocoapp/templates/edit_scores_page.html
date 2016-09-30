@@ -4,30 +4,60 @@
 
 {% block css %}
 {{ block.super }}
+<link rel="stylesheet" type="text/css" href="{% static 'css/jquery.datetimepicker.min.css' %}" />
 {% endblock %}
 
 {% block js %}
 {{ block.super }}
+<script type="text/javascript" src="{% static 'js/jquery.datetimepicker.full.min.js' %}"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $.datetimepicker.setLocale('en');
+    $(".datetimepicker").datetimepicker();
+});
+</script>
 {% endblock %}
 
 {% block body %}
 
 <div class="content">
 
-    <h2>Editing Scores for {{ scoreboard.event.name }}</h2>
+    <div class="row">
+        <div class="col-md-6">
+        <h2>Edit <b>{{ scoreboard.event.name }}</b></h2>
+            <hr />
+            <form method="post">
+                {% csrf_token %}
+                <input type="hidden" name="event_info" value="true" />
+                {% for field in event_form %}
+                <p>
+                    {{ field.label }}:<br />
+                    {{ field }}
+                    {{ field.errors }}
+                </p>
+                {% endfor %}
 
-    <form method="post">
-        {% csrf_token %}
-        {% for field in form %}
-        <p>
-            {{ field.label }}:<br />
-            {{ field }}
-            {{ field.errors }}
-        </p>
-        {% endfor %}
+                <input type="submit" value="Edit Event" />
+            </form>
+        </div>
 
-        <input type="submit" value="Submit" />
-    </form>
+        <div class="col-md-6">
+            <h2>Edit Scores for <b>{{ scoreboard.event.name }}</b></h2>
+            <hr />
+            <form method="post">
+                {% csrf_token %}
+                <input type="hidden" name="event_score" value="true" />
+                {% for field in score_form %}
+                <p>
+                    {{ field.label }}:<br />
+                    {{ field }}
+                    {{ field.errors }}
+                </p>
+                {% endfor %}
 
+                <input type="submit" value="Edit Scores" />
+            </form>
+        </div>
+    </div>
 </div>
 {% endblock %}

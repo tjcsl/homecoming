@@ -11,8 +11,8 @@ class CreateEventForm(forms.ModelForm):
         super(CreateEventForm, self).__init__(*args, **kwargs)
 
     description = forms.CharField(widget=forms.Textarea)
-    start_time = forms.DateTimeField(input_formats=["%Y/%m/%d %H:%M"], widget=forms.DateTimeInput(attrs={"class": "datetimepicker"}))
-    end_time = forms.DateTimeField(input_formats=["%Y/%m/%d %H:%M"], widget=forms.DateTimeInput(attrs={"class": "datetimepicker"}))
+    start_time = forms.DateTimeField(input_formats=["%Y/%m/%d %H:%M", "%Y-%m-%d %H:%M:%S"], widget=forms.DateTimeInput(attrs={"class": "datetimepicker"}))
+    end_time = forms.DateTimeField(input_formats=["%Y/%m/%d %H:%M", "%Y-%m-%d %H:%M:%S"], widget=forms.DateTimeInput(attrs={"class": "datetimepicker"}))
 
     class Meta:
         model = Event

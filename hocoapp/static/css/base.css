@@ -35,6 +35,13 @@ div.title {
     position: absolute;
     text-align: center;
 }
+.row {
+    width: 100%;
+}
+.col-md-6 {
+    width: 50%;
+    float: left;
+}
 @media screen and (max-device-width: 640px) {
     .footer {
         position: static;
@@ -42,6 +49,13 @@ div.title {
     }
     .hide-sm {
         display: none;
+    }
+    .col-md-6 {
+        margin-bottom: 15px;
+        width: 100%;
+    }
+    textarea {
+        width: 100%;
     }
 }
 @media screen and (min-device-width: 640px) {
