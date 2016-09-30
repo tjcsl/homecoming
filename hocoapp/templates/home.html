@@ -19,30 +19,30 @@
 {% block body %}
 
 <div class="overview">
-	<div class="box-container">
-		<div class="box">
-			<div class="class">2020</div>
-			<div class="score">{{ freshman_total }}</div>
-			points
-		</div>
-		<div class="box">
-			<div class="class">2019</div>
-			<div class="score">{{ sophomore_total }}</div>
-			points
-		</div>
-	</div>
-	<div class="box-container">
-		<div class="box">
-			<div class="class">2018</div>
-			<div class="score">{{ junior_total }}</div>
-			points
-		</div>
-		<div class="box">
-			<div class="class">2017</div>
-			<div class="score">{{ senior_total }}</div>
-			points
-		</div>
-	</div>
+    <div class="box-container">
+        <div class="box">
+            <div class="class">2020</div>
+            <div class="score">{{ freshman_total|floatformat }}</div>
+            points
+        </div>
+        <div class="box">
+            <div class="class">2019</div>
+            <div class="score">{{ sophomore_total|floatformat }}</div>
+            points
+        </div>
+    </div>
+    <div class="box-container">
+        <div class="box">
+            <div class="class">2018</div>
+            <div class="score">{{ junior_total|floatformat }}</div>
+            points
+        </div>
+        <div class="box">
+            <div class="class">2017</div>
+            <div class="score">{{ senior_total|floatformat }}</div>
+            points
+        </div>
+    </div>
 </div>
 
 <div class="scoreboard">

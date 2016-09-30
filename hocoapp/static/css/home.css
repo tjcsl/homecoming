@@ -31,14 +31,16 @@
     text-align: center;
 }
 .overview .box-container {
-	display: inline-block;
-	margin: 0 auto;
-	width: 284px;
+    display: inline-block;
+    margin: 0 auto;
+    width: 284px;
 }
 .overview .box {
     display: inline-block;
-    background-color: #ddd;
+    background-color: #545454;
+    color: white;
     padding: 15px;
+    padding-bottom: 20px;
     margin: 5px;
     width: 100px;
     height: 80px;
