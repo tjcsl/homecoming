@@ -127,3 +127,8 @@
     background-color: #000;
     border-radius: .25rem;
 }
+.can-edit:after {
+    content: " (click to edit)";
+    font-weight: normal;
+    font-size: 0.7em;
+}

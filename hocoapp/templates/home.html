@@ -63,7 +63,7 @@
         <tbody>
         {% for scoreboard in scoreboards %}
             <tr>
-                <td>{% if is_admin %}<a href="{% url 'edit_scores' scoreboard.event.id %}" style="color: black;">{% endif %}{{ scoreboard.event.name }}{% if is_admin %}</a>{% endif %}</td>
+                <td>{% if is_admin %}<a href="{% url 'edit_scores' scoreboard.event.id %}">{% endif %}{{ scoreboard.event.name }}{% if is_admin %}</a>{% endif %}</td>
                 <td>{{ scoreboard.freshman_score}}</td>
                 <td>{{ scoreboard.sophomore_score }}</td>
                 <td>{{ scoreboard.junior_score }}</td>
@@ -85,7 +85,7 @@
     {% for event in events %}
         <div class="panel">
             <div class="panel-heading">
-                <h3>{% if is_admin %}<a href="{% url 'edit_scores' event.id %}" style="color:white;">{% endif %}{{ event.name }}{% if is_admin %}</a>{% endif %}</h3>
+                <h3>{% if is_admin %}<a href="{% url 'edit_scores' event.id %}" class="can-edit" style="color: white">{% endif %}{{ event.name }}{% if is_admin %}</a>{% endif %}</h3>
             </div>
             <div class="panel-body">
                 <p>{{ event.description }}</p>
