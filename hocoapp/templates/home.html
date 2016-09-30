@@ -89,7 +89,7 @@
             </div>
             <div class="panel-body">
                 <p>{{ event.description }}</p>
-                <h4>{{ event.time }}</h4>
+                <div class="date">{{ event.start_time|date:"h:i A m/d/Y" }} - {{ event.end_time|date:"h:i A m/d/Y" }}</div>
             </div>
         </div>
     {% endfor %}
