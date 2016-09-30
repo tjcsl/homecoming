@@ -13,6 +13,7 @@
     <script type="text/javascript" src="{% static 'js/vendor/bootstrap.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/vendor/underscore-min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/calendar.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/vendor/jquery.timeago.js' %}"></script>
 
 {% endblock %}
 
@@ -85,7 +86,12 @@
     {% for event in events %}
         <div class="panel">
             <div class="panel-heading">
-                <h3>{% if is_admin %}<a href="{% url 'edit_scores' event.id %}" class="can-edit" style="color: white">{% endif %}{{ event.name }}{% if is_admin %}</a>{% endif %}</h3>
+                <h3>
+                    {% if is_admin %}<a href="{% url 'edit_scores' event.id %}" class="can-edit" style="color: white">{% endif %}{{ event.name }}{% if is_admin %}</a>{% endif %}
+                    <span class="pull-right">
+                        <time class="timeago" datetime="{{ event.start_time|date:"c" }}"></time>
+                    </span>
+                </h3>
             </div>
             <div class="panel-body">
                 <p>{{ event.description }}</p>
@@ -114,29 +120,34 @@ $("button[data-calendar-view]").each(function() {
         calendar.view($this.data("calendar-view"));
     });
 });
-var arr = [];
-$(".overview .box").each(function() {
-    var score = parseInt($(this).find(".score").text());
-    arr.push([$(this), score]);
-});
-arr.sort(function(a, b) {
-    return b[1] - a[1];
-});
-var place = 0;
-$.each(arr, function(k, v) {
-    console.log(k, v);
-    if (k > 0 && arr[k - 1][1] != v[1]) {
-        place += 1;
-    }
-    if (place == 0) {
-        v[0].find(".corner-ribbon").addClass("gold").text("1st");
-    }
-    else if (place == 1) {
-        v[0].find(".corner-ribbon").addClass("silver").text("2nd");
-    }
-    else if (place == 2) {
-        v[0].find(".corner-ribbon").addClass("bronze").text("3rd");
-    }
+function giveRibbons() {
+    var arr = [];
+    $(".overview .box").each(function() {
+        var score = parseInt($(this).find(".score").text());
+        arr.push([$(this), score]);
+    });
+    arr.sort(function(a, b) {
+        return b[1] - a[1];
+    });
+    var place = 0;
+    $.each(arr, function(k, v) {
+        if (k > 0 && arr[k - 1][1] != v[1]) {
+            place += 1;
+        }
+        if (place == 0) {
+            v[0].find(".corner-ribbon").addClass("gold").text("1st");
+        }
+        else if (place == 1) {
+            v[0].find(".corner-ribbon").addClass("silver").text("2nd");
+        }
+        else if (place == 2) {
+            v[0].find(".corner-ribbon").addClass("bronze").text("3rd");
+        }
+    });
+}
+$(document).ready(function() {
+    $(".timeago").timeago();
+    giveRibbons();
 });
 </script>
 {% endblock %}

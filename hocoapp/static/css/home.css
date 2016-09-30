@@ -136,3 +136,8 @@
 .panel-body .date {
     color: #888;
 }
+
+.panel-heading .pull-right {
+    font-weight: normal;
+    margin-right: 5px;
+}
