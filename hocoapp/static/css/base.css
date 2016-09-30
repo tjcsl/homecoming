@@ -39,6 +39,8 @@ div.title {
     width: 100%;
 }
 .col-md-6 {
+    box-sizing: border-box;
+    padding: 5px;
     width: 50%;
     float: left;
 }
