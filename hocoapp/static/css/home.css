@@ -206,6 +206,10 @@ h3 {
     border-bottom-right-radius: 4px;
 }
 
+.panel-body iframe {
+    width: 100%;
+}
+
 .corner-ribbon {
     width: 95px;
     background: #e43;
