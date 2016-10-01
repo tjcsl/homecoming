@@ -61,9 +61,25 @@
 }
 
 .panel {
-    margin: 0 auto;
+    vertical-align: top;
     margin-bottom: 10px;
-    max-width: 400px;
+    width: 400px;
+}
+
+.events {
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+    width: 100%;
+    margin: 4px;
+}
+
+.events .panel {
+    text-align: left;
+    display: inline-block;
+    margin: 5px;
 }
 
 .panel-heading {
