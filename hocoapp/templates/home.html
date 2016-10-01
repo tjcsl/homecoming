@@ -123,7 +123,7 @@ $("button[data-calendar-view]").each(function() {
 function giveRibbons() {
     var arr = [];
     $(".overview .box").each(function() {
-        var score = parseInt($(this).find(".score").text());
+        var score = parseFloat($(this).find(".score").text());
         arr.push([$(this), score]);
     });
     arr.sort(function(a, b) {
