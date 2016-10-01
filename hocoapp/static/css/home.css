@@ -26,11 +26,20 @@
     max-width: 800px;
     margin: 0 auto;
     text-align: center;
+    overflow-x: scroll;
+}
+.scoreboard .scores {
+    min-width: 500px;
 }
 .scoreboard .scores .score-group {
     white-space:  nowrap;
     display: block;
 }
+
+.scoreboard .score-group.total > div {
+    font-weight: bold;
+}
+
 .scoreboard .scores .score-group div {
     font-size: 18px;
     text-align: center;
@@ -142,7 +151,7 @@
 .panel {
     vertical-align: top;
     margin-bottom: 10px;
-    width: 400px;
+    width: 300px;
 }
 
 .events {
@@ -161,7 +170,7 @@ h3 {
 }
 
 .events .panel-heading a {
-    max-width: 250px;
+    max-width: 200px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
