@@ -14,7 +14,7 @@ import subprocess
 @login_required
 def index_view(request):
 
-    events = Event.objects.all().order_by("-start_time")
+    events = Event.objects.all()
     schedule = "schedule"
     scoreboards = ScoreBoard.objects.all()
 
