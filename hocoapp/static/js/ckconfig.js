@@ -7,4 +7,6 @@ CKEDITOR.editorConfig = function( config ) {
         { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat' ] },
         { name: 'paragraph', items: [ 'NumberedList', 'BulletedList', '-', 'Blockquote' ] }
     ];
+    config.enterMode = CKEDITOR.ENTER_BR;
+    config.autoParagraph = false;
 };

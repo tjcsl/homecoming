@@ -15,7 +15,7 @@ class CreateEventForm(forms.ModelForm):
     def clean_description(self):
         data = self.cleaned_data['description']
         return bleach.clean(data,
-            tags=['a', 'b', 'strong', 'img', 'table', 'thead', 'tbody', 'th', 'tr', 'td', 'hr', 'b', 'i', 'u', 's', 'sup', 'sub', 'p', 'ul', 'ol', 'li', 'em', 'blockquote'],
+            tags=['a', 'b', 'strong', 'img', 'table', 'thead', 'tbody', 'th', 'tr', 'td', 'hr', 'br', 'b', 'i', 'u', 's', 'sup', 'sub', 'p', 'ul', 'ol', 'li', 'em', 'blockquote'],
             attributes={
                 '*': ['title'],
                 'a': ['href'],
