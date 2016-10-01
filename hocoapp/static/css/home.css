@@ -22,15 +22,94 @@
 }
 
 .scoreboard {
-}
-.scoreboard .total {
-    border-top:1px solid #666;
-}
-.scoreboard thead  {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
     text-align: center;
 }
-.scoreboard tbody td:not(:first-child) {
-    text-align: right;
+.scoreboard .scores .score-group {
+    white-space:  nowrap;
+    display: block;
+}
+.scoreboard .scores .score-group div {
+    font-size: 18px;
+    text-align: center;
+    background-color: rgba(255, 220, 20, .7);
+    padding: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 15px;
+    margin-right: 15px;
+    vertical-align: center;
+    display:  inline-block;
+    line-height: 50px;
+    overflow-x: hidden;
+}
+
+
+.scoreboard .scoreboard-header > div {
+    display: inline-block;
+}
+.scoreboard .scoreboard-header span.freshman-title:after {
+    content: "Freshmen"
+}
+.scoreboard .scoreboard-header span.sophomore-title:after {
+    content: "Sophomores"
+}
+.scoreboard .scoreboard-header span.junior-title:after {
+    content: "Juniors"
+}
+.scoreboard .scoreboard-header span.senior-title:after {
+    content: "Seniors"
+}
+
+.scoreboard .scores .scoreboard-header > div {
+    background-color: transparent;
+    font-weight: bold;
+}
+
+.scoreboard .scores .scoreboard-header .score-header {
+    font-size: 14px;
+}
+
+.scoreboard .event_name {
+    width: 300px;
+    height: 50px;
+    text-overflow: ellipsis;
+}
+.scoreboard .scores > .score-group > .score-header {
+    padding: 0;
+    margin-left: 2px;
+    margin-right: 2px;
+    width: 86px;
+}
+@media screen and (max-width: 990px) {
+    .scoreboard .scores .score-group div {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+    .scoreboard .scores > .score-group > .score-header {
+        width: 66px;
+    }
+    .scoreboard .scoreboard-header span.freshman-title:after {
+        content: "2020"
+    }
+    .scoreboard .scoreboard-header span.sophomore-title:after {
+        content: "2019"
+    }
+    .scoreboard .scoreboard-header span.junior-title:after {
+        content: "2018"
+    }
+    .scoreboard .scoreboard-header span.senior-title:after {
+        content: "2017"
+    }
+    .scoreboard .event_name {
+        width:  200px;
+    }
+}
+.scoreboard .score {
+    width: 50px;
+    height: 50px;
 }
 
 .overview {
@@ -113,9 +192,6 @@ h3 {
     border-bottom-right-radius: 4px;
 }
 
-.scoreboard table {
-    width: 100%;
-}
 .corner-ribbon {
     width: 95px;
     background: #e43;
