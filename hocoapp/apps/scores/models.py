@@ -11,10 +11,10 @@ class ScoreBoard(models.Model):
     It has a score field for all 4 classes"""
 
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
-    freshman_score = models.DecimalField(max_digits=10, decimal_places=2)
-    sophomore_score = models.DecimalField(max_digits=10, decimal_places=2)
-    junior_score = models.DecimalField(max_digits=10, decimal_places=2)
-    senior_score = models.DecimalField(max_digits=10, decimal_places=2)
+    freshman_score = models.IntegerField()
+    sophomore_score = models.IntegerField()
+    junior_score = models.IntegerField()
+    senior_score = models.IntegerField()
 
     @classmethod
     def create(cls, event, freshman_score=0, sophomore_score=0, junior_score=0, senior_score=0):
