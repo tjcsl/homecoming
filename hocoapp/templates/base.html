@@ -11,24 +11,33 @@
     <link rel="stylesheet" href="{% static 'css/tjcsl.css' %}">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"/>
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:100italic,400italic,700italic,100,400,700"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/messenger.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/messenger-theme-future.css' %}" />
     <link rel="stylesheet" href="{% static 'css/base.css' %}" />
     {% block css %} 
     {% endblock %}
     <script type="text/javascript" src="{% static 'js/vendor/jquery-1.10.2.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/vendor/jquery-ui.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/nav.js' %}">
-    </script>
+    <script type="text/javascript" src="{% static 'js/vendor/messenger.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/vendor/messenger-theme-future.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/nav.js' %}"></script>
     {% block js %}
     {% endblock %}
+    {% if messages %}
+    <script type="text/javascript">
+$(document).ready(function() {
+{% for message in messages %}
+    Messenger().post({
+        message: "{{ message|escapejs }}",
+        type: "{{ message.tags|escapejs }}",
+        showCloseButton: true
+    });
+{% endfor %}
+});
+    </script>
+    {% endif %}
 </head>
 <body>
-    {% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-        {% endfor %}
-    </ul>
-    {% endif %}
 <div class="header">
     <a href="/" class="title">
     <div class="title">
