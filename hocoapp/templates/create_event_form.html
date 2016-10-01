@@ -10,12 +10,14 @@
 {% block js %}
 {{ block.super }}
 <script type="text/javascript" src="{% static 'js/jquery.datetimepicker.full.min.js' %}"></script>
-<script src="//cdn.ckeditor.com/4.5.11/standard/ckeditor.js"></script>
+<script src="{% static 'ckeditor/ckeditor.js' %}"></script>
 <script type="text/javascript">
 $(document).ready(function() {
+    $.datetimepicker.setLocale('en');
+    $(".datetimepicker").datetimepicker();
     CKEDITOR.replace("id_description", {
-        customConfig: "{% static 'js/ckconfig.js' %}",
-        skin: "bootstrapck,{% static 'skins/bootstrapck/' %}"
+        customConfig: "{% static 'ckeditor/config.js' %}",
+        skin: "bootstrapck,{% static 'ckeditor/skins/bootstrapck/' %}",
     });
 });
 </script>

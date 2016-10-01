@@ -8,7 +8,7 @@ class Event(models.Model):
     """A Model for an Event in Homecoming Week"""
 
     name = models.CharField(max_length=128)
-    description = models.CharField(max_length=512)
+    description = models.CharField(max_length=4096)
     start_time = models.DateTimeField()
     end_time = models.DateTimeField()
 
