@@ -10,9 +10,15 @@ ul.right {
     margin-top:-2px;
 }
 .footer {
-    position:fixed;
-    bottom:5px;
-    right:5px;
+    position:relative;
+    bottom:-10px;
+    right:26px;
+    background-color:rgba(0,0,0,.15);
+    padding: 3px;
+    padding-right: 15px;
+    text-align: right;
+    width: calc(100% + 34px);
+    overflow:hidden;
     font-size:10px;
 }
 h1 {
