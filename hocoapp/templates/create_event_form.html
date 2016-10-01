@@ -33,6 +33,9 @@ $(document).ready(function() {
         <p>
             {{ field.label }}:<br />
             {{ field }}
+            {% if field.auto_id == "id_description" %}
+            <div>You can use <a href="https://imgur.com/">Imgur</a> or another file hosting site to host images. You can host videos on <a href="https://youtube.com/">Youtube</a> and then click the Insert Media Embed (<span class="cke_button_icon cke_button__embed_icon" style="float:none">&nbsp;</span></span>) button to insert them.</div>
+            {% endif %}
             {{ field.errors }}
         </p>
         {% endfor %}
