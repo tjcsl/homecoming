@@ -64,7 +64,7 @@
         <tbody>
         {% for scoreboard in scoreboards %}
             <tr>
-                <td>{% if is_admin %}<a href="{% url 'edit_scores' scoreboard.event.id %}">{% endif %}{{ scoreboard.event.name }}{% if is_admin %}</a>{% endif %}</td>
+                <td>{{ scoreboard.event.name }}</td>
                 <td>{{ scoreboard.freshman_score}}</td>
                 <td>{{ scoreboard.sophomore_score }}</td>
                 <td>{{ scoreboard.junior_score }}</td>
