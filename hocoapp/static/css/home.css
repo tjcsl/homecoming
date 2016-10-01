@@ -26,7 +26,7 @@
     max-width: 800px;
     margin: 0 auto;
     text-align: center;
-    overflow-x: scroll;
+    overflow-x: auto;
 }
 .scoreboard .scores {
     min-width: 500px;
@@ -81,10 +81,15 @@
     font-size: 14px;
 }
 
-.scoreboard .event_name {
+.scoreboard .event-name {
     width: 300px;
     height: 50px;
     text-overflow: ellipsis;
+}
+.scoreboard .scores .scoreboard-header .event-name-header {
+    font-size: 14px;
+    padding-top: 0px;
+    padding-bottom: 0px;
 }
 .scoreboard .scores > .score-group > .score-header {
     padding: 0;
@@ -112,7 +117,7 @@
     .scoreboard .scoreboard-header span.senior-title:after {
         content: "2017"
     }
-    .scoreboard .event_name {
+    .scoreboard .event-name {
         width:  200px;
     }
 }

@@ -54,7 +54,7 @@
     <h2>Scoreboard</h2>
     <div class="scores">
         <div class="score-group scoreboard-header">
-            <div class="event_name event-name-header">Scores</div>
+            <div class="event-name event-name-header">Event</div>
             <div class="score score-header"><span class="freshman-title"></span></div>
             <div class="score score-header"><span class="sophomore-title"></span></div>
             <div class="score score-header"><span class="junior-title"></span></div>
@@ -62,7 +62,7 @@
         </div>
         {% for scoreboard in scoreboards %}
         <div class="score-group">
-            <div class="event_name">{{ scoreboard.event.name }}</div>
+            <div class="event-name">{{ scoreboard.event.name }}</div>
             <div class="score">{{ scoreboard.freshman_score }}</div>
             <div class="score">{{ scoreboard.sophomore_score }}</div>
             <div class="score">{{ scoreboard.junior_score }}</div>
@@ -70,7 +70,7 @@
         </div>
         {% endfor %}
         <div class="score-group total">
-            <div class="event_name">Totals</div>
+            <div class="event-name">Totals</div>
             <div class="score">{{ freshman_total }}</div>
             <div class="score">{{ sophomore_total }}</div>
             <div class="score">{{ junior_total }}</div>
