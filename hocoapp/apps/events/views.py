@@ -25,7 +25,7 @@ def create_event_view(request):
         form = CreateEventForm(request.POST)
         if form.is_valid():
             event_data = form.cleaned_data
-            e = Event.create(event_data['name'], event_data['description'], event_data['start_time'], event_data['end_time'])
+            e = Event.create(event_data['name'], event_data['description'], event_data['location'], event_data['start_time'], event_data['end_time'])
             s = ScoreBoard.create(event=e)
             messages.info(request, "New event created!")
             return redirect(reverse("index"))

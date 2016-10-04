@@ -91,6 +91,7 @@
                 </h3>
             </div>
             <div class="panel-body">
+                <p>Location: <strong>{{ event.location }}</strong></p>
                 {{ event.description|safe }}
                 <div class="date">{{ event.start_time|date:"h:i A m/d/Y" }} - {{ event.end_time|date:"h:i A m/d/Y" }}</div>
             </div>
