@@ -22,29 +22,29 @@
 <div class="overview">
     <div class="box-container">
         <div class="box">
-            <div class="class">2020</div>
+            <div class="class">2017</div>
             <div class="corner-ribbon"></div>
-            <div class="score">{{ freshman_total|floatformat }}</div>
+            <div class="score">{{ senior_total|floatformat }}</div>
             points
         </div>
-        <div class="box">
-            <div class="class">2019</div>
-            <div class="corner-ribbon"></div>
-            <div class="score">{{ sophomore_total|floatformat }}</div>
-            points
-        </div>
-    </div>
-    <div class="box-container">
         <div class="box">
             <div class="class">2018</div>
             <div class="corner-ribbon"></div>
             <div class="score">{{ junior_total|floatformat }}</div>
             points
         </div>
+    </div>
+    <div class="box-container">
         <div class="box">
-            <div class="class">2017</div>
+            <div class="class">2019</div>
             <div class="corner-ribbon"></div>
-            <div class="score">{{ senior_total|floatformat }}</div>
+            <div class="score">{{ sophomore_total|floatformat }}</div>
+            points
+        </div>
+        <div class="box">
+            <div class="class">2020</div>
+            <div class="corner-ribbon"></div>
+            <div class="score">{{ freshman_total|floatformat }}</div>
             points
         </div>
     </div>
@@ -55,26 +55,26 @@
     <div class="scores">
         <div class="score-group scoreboard-header">
             <div class="event-name event-name-header">Event</div>
-            <div class="score score-header"><span class="freshman-title"></span></div>
-            <div class="score score-header"><span class="sophomore-title"></span></div>
-            <div class="score score-header"><span class="junior-title"></span></div>
             <div class="score score-header"><span class="senior-title"></span></div>
+            <div class="score score-header"><span class="junior-title"></span></div>
+            <div class="score score-header"><span class="sophomore-title"></span></div>
+            <div class="score score-header"><span class="freshman-title"></span></div>
         </div>
         {% for scoreboard in scoreboards %}
         <div class="score-group">
             <div class="event-name">{{ scoreboard.event.name }}</div>
-            <div class="score">{{ scoreboard.freshman_score }}</div>
-            <div class="score">{{ scoreboard.sophomore_score }}</div>
-            <div class="score">{{ scoreboard.junior_score }}</div>
             <div class="score">{{ scoreboard.senior_score }}</div>
+            <div class="score">{{ scoreboard.junior_score }}</div>
+            <div class="score">{{ scoreboard.sophomore_score }}</div>
+            <div class="score">{{ scoreboard.freshman_score }}</div>
         </div>
         {% endfor %}
         <div class="score-group total">
             <div class="event-name">Totals</div>
-            <div class="score">{{ freshman_total }}</div>
-            <div class="score">{{ sophomore_total }}</div>
-            <div class="score">{{ junior_total }}</div>
             <div class="score">{{ senior_total }}</div>
+            <div class="score">{{ junior_total }}</div>
+            <div class="score">{{ sophomore_total }}</div>
+            <div class="score">{{ freshman_total }}</div>
         </div>
     </div>
 </div>
@@ -85,13 +85,10 @@
             <div class="panel-heading">
                 <h3>
                     {% if is_admin %}<a href="{% url 'edit_scores' event.id %}" class="can-edit" style="color: white">{% endif %}{{ event.name }}{% if is_admin %}</a>{% endif %}
-                    <span class="pull-right">
-                        <time class="timeago" datetime="{{ event.start_time|date:"c" }}"></time>
-                    </span>
                 </h3>
             </div>
             <div class="panel-body">
-                <p>Location: <strong>{{ event.location }}</strong></p>
+                <p>Location: <strong>{{ event.location }}</strong> &mdash; <time class="timeago" datetime="{{ event.start_time|date:"c" }}"></time></p>
                 {{ event.description|safe }}
                 <div class="date">{{ event.start_time|date:"h:i A m/d/Y" }} - {{ event.end_time|date:"h:i A m/d/Y" }}</div>
             </div>
