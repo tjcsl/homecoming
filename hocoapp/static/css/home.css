@@ -106,16 +106,16 @@
         width: 66px;
     }
     .scoreboard .scoreboard-header span.freshman-title:after {
-        content: "2020"
+        content: "2021"
     }
     .scoreboard .scoreboard-header span.sophomore-title:after {
-        content: "2019"
+        content: "2020"
     }
     .scoreboard .scoreboard-header span.junior-title:after {
-        content: "2018"
+        content: "2019"
     }
     .scoreboard .scoreboard-header span.senior-title:after {
-        content: "2017"
+        content: "2018"
     }
     .scoreboard .event-name {
         width:  200px;
