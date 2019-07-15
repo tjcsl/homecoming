@@ -27,6 +27,9 @@ def index_view(request):
         "junior_total": ScoreBoard.objects.aggregate(Sum("junior_score"))["junior_score__sum"],
         "senior_total": ScoreBoard.objects.aggregate(Sum("senior_score"))["senior_score__sum"],
     }
+    for key in context:
+        if key.endswith("total") and not context[key]:
+            context[key] = 0
     return render(request, 'home.html', context)
 
 def api_view(request):
