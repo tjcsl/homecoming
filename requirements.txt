@@ -1,7 +1,7 @@
 Babel==2.5.1
 bleach==2.0.0
 Delorean==0.6.0
-Django==1.11.5
+Django==1.11.22
 html5lib==0.999999999
 humanize==0.5.1
 oauthlib==2.0.4
