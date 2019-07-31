@@ -128,7 +128,7 @@ TIME_ZONE = 'US/Eastern'
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static/')
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'serve/')
 
 STATICFILES_DIRS = (
     os.path.join(PROJECT_ROOT, 'static/'),
