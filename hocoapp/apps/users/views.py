@@ -7,8 +7,6 @@ from django.conf import settings
 from django.shortcuts import redirect, render
 from django.urls import reverse
 
-# Create your views here.
-
 
 def handle_oauth(request):
     oauth = OAuth2Session(settings.CLIENT_ID, redirect_uri=settings.REDIRECT_URI, scope=["read"])
