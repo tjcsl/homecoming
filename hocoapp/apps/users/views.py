@@ -21,7 +21,7 @@ def handle_oauth(request):
         authorization_url, state = oauth.authorization_url("https://ion.tjhsst.edu/oauth/authorize/")
         return redirect(authorization_url)
     try:
-        token = oauth.fetch_token("https://ion.tjhsst.edu/oauth/token/", code=request.GET["code"], client_secret=settings.CLIENT_SECRET)
+        oauth.fetch_token("https://ion.tjhsst.edu/oauth/token/", code=request.GET["code"], client_secret=settings.CLIENT_SECRET)
         profile = oauth.get("https://ion.tjhsst.edu/api/profile")
         user_data = json.loads(profile.content.decode())
         request.session["name"] = user_data["nickname"] or user_data["short_name"]
