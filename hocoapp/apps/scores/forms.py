@@ -12,9 +12,4 @@ class EditScoresForm(forms.ModelForm):
 
     class Meta:
         model = ScoreBoard
-        fields = [
-            "freshman_score",
-            "sophomore_score",
-            "junior_score",
-            "senior_score"
-        ]
+        fields = ["freshman_score", "sophomore_score", "junior_score", "senior_score"]

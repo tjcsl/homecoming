@@ -30,7 +30,8 @@ def index_view(request):
     for key in context:
         if key.endswith("total") and not context[key]:
             context[key] = 0
-    return render(request, 'home.html', context)
+    return render(request, "home.html", context)
+
 
 def api_view(request):
     context = {

@@ -1,5 +1,5 @@
 def is_authenticated(req):
-    return 'uid' in req.session
+    return "uid" in req.session
 
 
 def is_admin(req):

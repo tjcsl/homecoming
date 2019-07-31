@@ -25,7 +25,7 @@ def create_event_view(request):
         form = CreateEventForm(request.POST)
         if form.is_valid():
             event_data = form.cleaned_data
-            e = Event.create(event_data['name'], event_data['description'], event_data['location'], event_data['start_time'], event_data['end_time'])
+            e = Event.create(event_data["name"], event_data["description"], event_data["location"], event_data["start_time"], event_data["end_time"])
             s = ScoreBoard.create(event=e)
             messages.info(request, "New event created!")
             return redirect(reverse("index"))
@@ -37,15 +37,9 @@ def create_event_view(request):
 
 @login_required
 def calendar_data_view(request):
-    return_data = {
-        "success": 1,
-        "result": []
-    }
+    return_data = {"success": 1, "result": []}
     for event in Event.objects.all():
-        return_data["result"].append({
-            "id": event.id,
-            "title": event.name,
-            "start": unix_time_millis(event.start_time),
-            "end": unix_time_millis(event.end_time)
-        })
-    return HttpResponse(json.dumps(return_data, sort_keys=True, indent=4, separators=(',', ': ')))
+        return_data["result"].append(
+            {"id": event.id, "title": event.name, "start": unix_time_millis(event.start_time), "end": unix_time_millis(event.end_time)}
+        )
+    return HttpResponse(json.dumps(return_data, sort_keys=True, indent=4, separators=(",", ": ")))

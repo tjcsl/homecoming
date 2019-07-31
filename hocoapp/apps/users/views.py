@@ -11,23 +11,17 @@ import json
 
 
 def handle_oauth(request):
-    oauth = OAuth2Session(
-        settings.CLIENT_ID, redirect_uri=settings.REDIRECT_URI, scope=["read"])
-    if 'error' in request.GET:
-        context = {
-            "message": request.GET["error"].replace("_", " ").title(),
-            "oauth_href": reverse("handle_oauth")
-        }
+    oauth = OAuth2Session(settings.CLIENT_ID, redirect_uri=settings.REDIRECT_URI, scope=["read"])
+    if "error" in request.GET:
+        context = {"message": request.GET["error"].replace("_", " ").title(), "oauth_href": reverse("handle_oauth")}
         if "uid" in request.session:
             del request.session["uid"]
         return render(request, "landing.html", context)
-    if 'code' not in request.GET:
-        authorization_url, state = oauth.authorization_url(
-            "https://ion.tjhsst.edu/oauth/authorize/")
+    if "code" not in request.GET:
+        authorization_url, state = oauth.authorization_url("https://ion.tjhsst.edu/oauth/authorize/")
         return redirect(authorization_url)
     try:
-        token = oauth.fetch_token("https://ion.tjhsst.edu/oauth/token/",
-                                  code=request.GET['code'], client_secret=settings.CLIENT_SECRET)
+        token = oauth.fetch_token("https://ion.tjhsst.edu/oauth/token/", code=request.GET["code"], client_secret=settings.CLIENT_SECRET)
         profile = oauth.get("https://ion.tjhsst.edu/api/profile")
         user_data = json.loads(profile.content.decode())
         request.session["name"] = user_data["nickname"] or user_data["short_name"]

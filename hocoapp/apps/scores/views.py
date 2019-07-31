@@ -7,6 +7,7 @@ from .forms import EditScoresForm
 
 from ..events.forms import CreateEventForm
 
+
 def edit_scores_view(request, event_id):
     scoreboard = get_object_or_404(ScoreBoard, event_id=event_id)
     if request.method == "POST" and request.POST.get("event_info"):

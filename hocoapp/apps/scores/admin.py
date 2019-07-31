@@ -8,4 +8,5 @@ from .models import ScoreBoard
 class ScoreBoardAdmin(admin.ModelAdmin):
     pass
 
+
 admin.site.register(ScoreBoard, ScoreBoardAdmin)
