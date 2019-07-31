@@ -2,11 +2,11 @@ import json
 import delorean
 
 from django.contrib import messages
-from django.http import HttpResponse
+from django.http import JsonResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse
-from hocoapp.decorators import admin_required, login_required
 
+from ...decorators import admin_required, login_required
 from ..scores.models import ScoreBoard
 from .forms import CreateEventForm
 from .models import Event
@@ -34,9 +34,14 @@ def create_event_view(request):
 
 @login_required
 def calendar_data_view(request):
-    return_data = {"success": 1, "result": []}
+    data = {"success": 1, "result": []}
     for event in Event.objects.all():
-        return_data["result"].append(
+        data["result"].append(
             {"id": event.id, "title": event.name, "start": unix_time_millis(event.start_time), "end": unix_time_millis(event.end_time)}
         )
-    return HttpResponse(json.dumps(return_data, sort_keys=True, indent=4, separators=(",", ": ")))
+    resp = JsonResponse(data)
+
+    resp["Access-Control-Allow-Origin"] = "*"
+    resp["Access-Control-Allow-Headers"] = "x-requested-with"
+
+    return resp
