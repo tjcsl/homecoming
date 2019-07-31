@@ -2,11 +2,13 @@ from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 
+from ...decorators import admin_required
 from ..events.forms import CreateEventForm
 from .forms import EditScoresForm
 from .models import ScoreBoard
 
 
+@admin_required
 def edit_scores_view(request, event_id):
     scoreboard = get_object_or_404(ScoreBoard, event_id=event_id)
     if request.method == "POST" and request.POST.get("event_info"):
