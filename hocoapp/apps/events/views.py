@@ -1,6 +1,8 @@
 import json
 import delorean
 
+from datetime import datetime
+
 from django.contrib import messages
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
@@ -13,7 +15,7 @@ from .models import Event
 
 
 def unix_time_millis(dt):
-    return int(delorean.Delorean(dt, timezone="UTC").epoch) * 1000
+    return int(round(datetime.datetime.timestamp(dt)*1000))
 
 
 @admin_required
