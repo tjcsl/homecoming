@@ -1,10 +1,9 @@
 from functools import wraps
 
-from hocoapp.utils import is_authenticated, is_admin
-
-from django.urls import reverse
-from django.shortcuts import redirect
 from django.contrib import messages
+from django.shortcuts import redirect
+from django.urls import reverse
+from hocoapp.utils import is_admin, is_authenticated
 
 
 def login_required(f):

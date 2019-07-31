@@ -1,4 +1,4 @@
-from .utils import is_authenticated, is_admin
+from .utils import is_admin, is_authenticated
 
 
 def auth_processor(request):

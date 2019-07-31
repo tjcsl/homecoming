@@ -1,11 +1,10 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from django.urls import reverse
 from django.contrib import messages
-
-from .models import ScoreBoard
-from .forms import EditScoresForm
+from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse
 
 from ..events.forms import CreateEventForm
+from .forms import EditScoresForm
+from .models import ScoreBoard
 
 
 def edit_scores_view(request, event_id):

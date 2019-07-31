@@ -1,11 +1,11 @@
-from django.shortcuts import render, redirect
-from django.urls import reverse
-from django.conf import settings
-
-from requests_oauthlib import OAuth2Session
-from oauthlib.oauth2.rfc6749.errors import InvalidGrantError
-
 import json
+
+from oauthlib.oauth2.rfc6749.errors import InvalidGrantError
+from requests_oauthlib import OAuth2Session
+
+from django.conf import settings
+from django.shortcuts import redirect, render
+from django.urls import reverse
 
 # Create your views here.
 

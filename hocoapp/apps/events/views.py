@@ -1,17 +1,15 @@
-from django.shortcuts import render, redirect
-from django.urls import reverse
-from django.http import HttpResponse
-from django.contrib import messages
+import json
 
-from hocoapp.decorators import login_required, admin_required
+import delorean
+from django.contrib import messages
+from django.http import HttpResponse
+from django.shortcuts import redirect, render
+from django.urls import reverse
+from hocoapp.decorators import admin_required, login_required
 
 from ..scores.models import ScoreBoard
 from .forms import CreateEventForm
 from .models import Event
-
-import json
-
-import delorean
 
 
 def unix_time_millis(dt):

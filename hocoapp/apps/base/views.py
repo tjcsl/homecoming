@@ -1,23 +1,18 @@
-from django.shortcuts import render
-from django.http import JsonResponse
 from django.db.models import Sum
+from django.http import JsonResponse
+from django.shortcuts import render
 
-from hocoapp.decorators import login_required
-from hocoapp.apps.events.models import Event
-from hocoapp.apps.scores.models import ScoreBoard
+from ..events.models import Event
+from ..scores.models import ScoreBoard
+from ...decorators import login_required
 
 
 @login_required
 def index_view(request):
-
-    events = Event.objects.all().order_by("start_time")
-    schedule = "schedule"
-    scoreboards = ScoreBoard.objects.all().order_by("event__start_time")
-
     context = {
-        "events": events,
-        "schedule": schedule,
-        "scoreboards": scoreboards,
+        "events": Event.objects.all().order_by("start_time"),
+        "schedule": "schedule",
+        "scoreboards": ScoreBoard.objects.all().order_by("event__start_time"),
         "freshman_total": ScoreBoard.objects.aggregate(Sum("freshman_score"))["freshman_score__sum"],
         "sophomore_total": ScoreBoard.objects.aggregate(Sum("sophomore_score"))["sophomore_score__sum"],
         "junior_total": ScoreBoard.objects.aggregate(Sum("junior_score"))["junior_score__sum"],

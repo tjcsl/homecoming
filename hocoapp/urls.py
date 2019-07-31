@@ -6,9 +6,9 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 
 from .apps.base import views as base_views
-from .apps.users import views as user_views
-from .apps.scores import views as score_views
 from .apps.events import views as event_views
+from .apps.scores import views as score_views
+from .apps.users import views as user_views
 
 urlpatterns = [
     url(r"^admin/", admin.site.urls),
