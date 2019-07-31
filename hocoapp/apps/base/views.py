@@ -10,7 +10,7 @@ from ...decorators import login_required
 @login_required
 def index_view(request):
     context = {
-        "events": Event.objects.all().order_by("start_time"),
+        "events": Event.objects.all(),
         "schedule": "schedule",
         "scoreboards": ScoreBoard.objects.all().order_by("event__start_time"),
         "freshman_total": ScoreBoard.objects.aggregate(Sum("freshman_score"))["freshman_score__sum"],
@@ -18,6 +18,7 @@ def index_view(request):
         "junior_total": ScoreBoard.objects.aggregate(Sum("junior_score"))["junior_score__sum"],
         "senior_total": ScoreBoard.objects.aggregate(Sum("senior_score"))["senior_score__sum"],
     }
+
     for key in context:
         if key.endswith("total") and not context[key]:
             context[key] = 0
