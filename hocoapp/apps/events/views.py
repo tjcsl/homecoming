@@ -1,24 +1,22 @@
-import json
-import delorean
-
 from datetime import datetime
 
 from django.contrib import messages
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 
-from ...decorators import admin_required, login_required
+from ..auth.decorators import management_only
 from ..scores.models import ScoreBoard
 from .forms import CreateEventForm
 from .models import Event
 
 
 def unix_time_millis(dt):
-    return int(round(datetime.datetime.timestamp(dt)*1000))
+    return int(round(datetime.timestamp(dt)*1000))
 
 
-@admin_required
+@management_only
 def create_event_view(request):
     if request.method == "POST":
         form = CreateEventForm(request.POST)
@@ -27,7 +25,7 @@ def create_event_view(request):
             e = Event.create(event_data["name"], event_data["description"], event_data["location"], event_data["start_time"], event_data["end_time"])
             ScoreBoard.create(event=e)
             messages.info(request, "New event created!")
-            return redirect(reverse("index"))
+            return redirect(reverse("base:index"))
     else:
         form = CreateEventForm()
     context = {"form": form}

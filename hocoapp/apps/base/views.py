@@ -1,10 +1,10 @@
 from django.db.models import Sum
 from django.http import JsonResponse
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 
 from ..events.models import Event
 from ..scores.models import ScoreBoard
-from ...decorators import login_required
 
 
 @login_required

@@ -1,54 +1,54 @@
 <!DOCTYPE html>
 
 {% load static %}
+{% load users %}
 
 <html>
 <head>
     <title>{% block title %}Homecoming{% endblock %}</title>
-
-    {% include "meta.html" %}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="{% static 'favicon.ico' %}">
     <link rel="stylesheet" href="{% static 'css/tjcsl.css' %}">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"/>
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:100italic,400italic,700italic,100,400,700"/>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/messenger.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static 'css/messenger-theme-future.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/messenger/css/messenger.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/messenger/css/messenger-theme-future.css' %}" />
     <link rel="stylesheet" href="{% static 'css/base.css' %}" />
     {% block css %} 
     {% endblock %}
-    <script type="text/javascript" src="{% static 'js/vendor/jquery-1.10.2.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/vendor/jquery-ui.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/vendor/messenger.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/vendor/messenger-theme-future.js' %}"></script>
+    <script type="text/javascript" src="{% static 'vendor/jquery/jquery-1.10.2.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'vendor/jquery/jquery-ui.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'vendor/messenger/js/messenger.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'vendor/messenger/js/messenger-theme-future.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/nav.js' %}"></script>
     {% block js %}
     {% endblock %}
     {% if messages %}
-    <script type="text/javascript">
-$(document).ready(function() {
-{% for message in messages %}
-    Messenger().post({
-        message: "{{ message|escapejs }}",
-        type: "{{ message.tags|escapejs }}",
-        showCloseButton: true
-    });
-{% endfor %}
-});
-    </script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                {% for message in messages %}
+                    Messenger().post({
+                        message: "{{ message|escapejs }}",
+                        type: "{{ message.tags|escapejs }}",
+                        showCloseButton: true
+                    });
+                {% endfor %}
+            });
+        </script>
     {% endif %}
 </head>
 <body>
 <div class="header">
     <a href="/" class="title">
     <div class="title">
-        Homecoming 2018
+        Homecoming {{ settings.HOMECOMING_YEAR }}
     </div>
     </a>
     <div class="right">
-        {% if is_admin %}
+        {% if user|has_management_permissions %}
         <li class="username"> 
             <i class="fa fa-plus"></i>
-            <a href="{% url 'create_event_page' %}" style="color: white;">
+            <a href="{% url 'events:create_event_page' %}" style="color: white;">
                 <span class="user-name">Create Event</span>
             </a>
         </li>
@@ -65,7 +65,7 @@ $(document).ready(function() {
     {% block body %}
     {% endblock %}
     <div class="footer">
-    This application was developed by Omkar Kulkarni (2019), Eric Wang (2017), and James Houghton (2017).
+    This application was developed by Anup Bagali (2021), Omkar Kulkarni (2019), Eric Wang (2017), and James Houghton (2017).
 </div>
 </body>
 </html>

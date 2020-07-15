@@ -5,20 +5,14 @@
 	<link rel="stylesheet" href="{% static 'css/landing.css' %}">
 {% endblock %}
 {% block body %}
-<div class="nav-g"></div>
-<div class="header">
-	<h1>Homecoming 2017</h1>
-	<ul class="right">
-	</ul>
-</div>
 <div class="main">
 	<div class="login-box">
 		<p>To access this application, you must <b>log in with your Intranet account.</b></p>
 		<center>
-			<b>{{ message }}</b><br />
-			<a href="{{ oauth_href }}" class="button">
-				Log In with Ion
-			</a>
+            <form action="{% url 'social:begin' 'ion' %}{% if request.GET.next %}?next={{ request.GET.next|urlencode }}{% endif %}" method="post">
+                {% csrf_token %}
+                <input type="submit" value="Login with Ion">
+            </form>
 		</center>
 	</div>
 </div>
