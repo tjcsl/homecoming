@@ -11,6 +11,7 @@ bleach = "*"
 social-auth-app-django = "*"
 sentry-sdk = "*"
 psycopg2 = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.7"
