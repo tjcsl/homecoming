@@ -2,5 +2,5 @@ from django.apps import AppConfig
 
 
 class AuthConfig(AppConfig):
-    name = 'hocoapp.apps.auth'
+    name = 'homecoming.apps.auth'
     label = 'authentication'

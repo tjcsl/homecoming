@@ -23,11 +23,11 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "social_django",
-    "hocoapp.apps",
-    "hocoapp.apps.auth.apps.AuthConfig",
-    "hocoapp.apps.base.apps.BaseConfig",
-    "hocoapp.apps.scores.apps.ScoresConfig",
-    "hocoapp.apps.events.apps.EventsConfig",
+    "homecoming.apps",
+    "homecoming.apps.auth.apps.AuthConfig",
+    "homecoming.apps.base.apps.BaseConfig",
+    "homecoming.apps.scores.apps.ScoresConfig",
+    "homecoming.apps.events.apps.EventsConfig",
 ]
 
 MIDDLEWARE = [
@@ -40,7 +40,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "hocoapp.urls"
+ROOT_URLCONF = "homecoming.urls"
 
 TEMPLATES = [
     {
@@ -55,12 +55,12 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
                 "social_django.context_processors.backends",
                 "social_django.context_processors.login_redirect",
-                "hocoapp.apps.context_processors.base_context",
+                "homecoming.apps.context_processors.base_context",
             ]
         },
     }
 ]
-WSGI_APPLICATION = "hocoapp.wsgi.application"
+WSGI_APPLICATION = "homecoming.wsgi.application"
 
 DATABASES = {
     "default": {
@@ -77,7 +77,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 AUTH_USER_MODEL = "authentication.User"
 
-AUTHENTICATION_BACKENDS = ("hocoapp.apps.auth.oauth.IonOauth2",)
+AUTHENTICATION_BACKENDS = ("homecoming.apps.auth.oauth.IonOauth2",)
 
 SOCIAL_AUTH_USER_FIELDS = [
     "username",

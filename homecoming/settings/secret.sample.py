@@ -1,7 +1,7 @@
 DEBUG = True
 SECRET_KEY = "y_xy)s%b_0h=#=y#3le5wfk!iy_+w#3#2j_&g@k^u-^qbrhxl2"
 
-AUTHENTICATION_BACKENDS = ("hocoapp.apps.auth.oauth.IonOauth2",)
+AUTHENTICATION_BACKENDS = ("homecoming.apps.auth.oauth.IonOauth2",)
 
 if DEBUG:
     AUTH_PASSWORD_VALIDATORS = []
