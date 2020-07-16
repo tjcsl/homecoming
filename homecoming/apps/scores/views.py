@@ -28,4 +28,4 @@ def edit_scores_view(request, event_id):
     else:
         form = EditScoresForm(instance=scoreboard)
     context = {"event_form": event_form, "score_form": form, "scoreboard": scoreboard}
-    return render(request, "edit_scores_page.html", context)
+    return render(request, "scores/edit_scores_page.html", context)

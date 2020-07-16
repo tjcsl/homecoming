@@ -29,7 +29,7 @@ def create_event_view(request):
     else:
         form = CreateEventForm()
     context = {"form": form}
-    return render(request, "create_event_form.html", context)
+    return render(request, "events/create_event_form.html", context)
 
 
 @login_required

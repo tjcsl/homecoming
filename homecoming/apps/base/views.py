@@ -1,8 +1,11 @@
 from django.db.models import Sum
 from django.http import JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
+from ..auth.decorators import management_only
 from ..events.models import Event
 from ..scores.models import ScoreBoard
 
@@ -22,7 +25,7 @@ def index_view(request):
     for key in context:
         if key.endswith("total") and not context[key]:
             context[key] = 0
-    return render(request, "home.html", context)
+    return render(request, "base/home.html", context)
 
 
 def api_view(request):
@@ -36,3 +39,13 @@ def api_view(request):
     resp["Access-Control-Allow-Origin"] = "*"
     resp["Access-Control-Allow-Headers"] = "x-requested-with"
     return resp
+
+
+@management_only
+def reset_view(request):
+    if request.method == "POST":
+        Event.objects.all().delete()
+        ScoreBoard.objects.all().delete()
+        messages.success(request, "Successfully reset all data")
+        return redirect(reverse("base:index"))
+    return render(request, "base/reset.html")

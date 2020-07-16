@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block body %}
+    <div class="overview">
+        <h2 style="color: red">Warning: This operation will IRREVERSIBLY DELETE ALL EVENTS AND SCORES</h2>
+        <h3>Proceed with caution</h3>
+        <h4>This operation will delete all events and all scores</h4>
+        <h4>You should only reset all the data when it is time for a new hoco szn</h4>
+        <form method="post" action="{% url 'base:reset' %}" id="reset-form">
+            {% csrf_token %}
+            <input type="submit" value="Reset all data">
+        </form>
+    </div>
+{% endblock %}

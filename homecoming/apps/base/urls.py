@@ -7,4 +7,5 @@ app_name = "base"
 urlpatterns = [
     path("", views.index_view, name="index"),
     path("api/", views.api_view, name="api"),
+    path("reset/", views.reset_view, name="reset"),
 ]

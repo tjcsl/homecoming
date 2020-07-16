@@ -26,6 +26,11 @@ h1 {
 a.title {
     color: white;
 }
+
+a:hover {
+    text-decoration: underline;
+}
+
 div.title {
     font-size: 20px;
     width: 100%;

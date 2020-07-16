@@ -23,19 +23,31 @@
     <script type="text/javascript" src="{% static 'js/nav.js' %}"></script>
     {% block js %}
     {% endblock %}
-    {% if messages %}
-        <script type="text/javascript">
-            $(document).ready(function() {
-                {% for message in messages %}
-                    Messenger().post({
-                        message: "{{ message|escapejs }}",
-                        type: "{{ message.tags|escapejs }}",
-                        showCloseButton: true
-                    });
-                {% endfor %}
-            });
-        </script>
-    {% endif %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            {% for message in messages %}
+                Messenger().post({
+                    message: "{{ message|escapejs }}",
+                    type: "{{ message.tags|escapejs }}",
+                    showCloseButton: true
+                });
+            {% endfor %}
+            $("#username")
+                .hover(
+                    function () {
+                        $(this).text("Logout");
+                        $(this).css("text-decoration", "underline");
+                    },
+                    function () {
+                        $(this).text("{{ user.username }}");
+                        $(this).css("text-decoration", "none");
+                    }
+                )
+                .click(function () {
+                    window.location.href = "{% url 'auth:logout' %}";
+                });
+        });
+    </script>
 </head>
 <body>
 <div class="header">
@@ -46,16 +58,20 @@
     </a>
     <div class="right">
         {% if user|has_management_permissions %}
-        <li class="username"> 
+        <li class="username" style="margin: 0; padding: 0">
             <i class="fa fa-plus"></i>
             <a href="{% url 'events:create_event_page' %}" style="color: white;">
                 <span class="user-name">Create Event</span>
             </a>
+            <i class="fa fa-times"></i>
+            <a href="{% url 'base:reset' %}" style="color: white">
+                <span class="user-name">Reset Data</span>
+            </a>
         </li>
         {% endif %}
         <li class="username">
+                <span id="username" class="user-name">{{ user.username }}</span>
                 <i class="fa fa-user"></i>
-                <span class="user-name">{{ request.session.name }}</span>
             </div>
         </li>
     </div>
