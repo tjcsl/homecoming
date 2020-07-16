@@ -2,8 +2,6 @@ from django.db import models
 
 from ..events.models import Event
 
-# Create your models here.
-
 
 class ScoreBoard(models.Model):
 
@@ -11,10 +9,10 @@ class ScoreBoard(models.Model):
     It has a score field for all 4 classes"""
 
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
-    freshman_score = models.IntegerField()
-    sophomore_score = models.IntegerField()
-    junior_score = models.IntegerField()
-    senior_score = models.IntegerField()
+    freshman_score = models.IntegerField(default=0)
+    sophomore_score = models.IntegerField(default=0)
+    junior_score = models.IntegerField(default=0)
+    senior_score = models.IntegerField(default=0)
 
     @classmethod
     def create(cls, event, freshman_score=0, sophomore_score=0, junior_score=0, senior_score=0):
@@ -23,3 +21,6 @@ class ScoreBoard(models.Model):
         )
         scoreboard.save()
         return scoreboard
+
+    def __str__(self):
+        return str(self.event)

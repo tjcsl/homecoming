@@ -8,10 +8,22 @@ from .models import Event
 
 class CreateEventForm(forms.ModelForm):
 
-    """A Form to create an Event"""
+    description = forms.CharField(widget=forms.Textarea)
+    start_time = forms.DateTimeField(
+        input_formats=["%Y/%m/%d %H:%M", "%Y-%m-%d %H:%M:%S"], widget=forms.DateTimeInput(attrs={"class": "datetimepicker"})
+    )
+    end_time = forms.DateTimeField(
+        input_formats=["%Y/%m/%d %H:%M", "%Y-%m-%d %H:%M:%S"], widget=forms.DateTimeInput(attrs={"class": "datetimepicker"})
+    )
 
-    def __init__(self, *args, **kwargs):
-        super(CreateEventForm, self).__init__(*args, **kwargs)
+    class Meta:
+        model = Event
+        fields = ["name", "description", "location", "start_time", "end_time"]
+
+    def clean(self):
+        cd = self.cleaned_data
+        if cd["start_time"] > cd["end_time"]:
+            raise ValidationError("Start time cannot be after end time!")
 
     def clean_description(self):
         data = self.cleaned_data["description"]
@@ -53,15 +65,3 @@ class CreateEventForm(forms.ModelForm):
                 "iframe": ["allowfullscreen", "mozallowfullscreen", "frameborder", "src", "tabindex", "webkitallowfullscreen"],
             },
         )
-
-    description = forms.CharField(widget=forms.Textarea)
-    start_time = forms.DateTimeField(
-        input_formats=["%Y/%m/%d %H:%M", "%Y-%m-%d %H:%M:%S"], widget=forms.DateTimeInput(attrs={"class": "datetimepicker"})
-    )
-    end_time = forms.DateTimeField(
-        input_formats=["%Y/%m/%d %H:%M", "%Y-%m-%d %H:%M:%S"], widget=forms.DateTimeInput(attrs={"class": "datetimepicker"})
-    )
-
-    class Meta:
-        model = Event
-        fields = ["name", "description", "location", "start_time", "end_time"]

@@ -1,9 +1,10 @@
 from datetime import datetime
 
+from django.urls import reverse, reverse_lazy
 from django.contrib import messages
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
-from django.urls import reverse
+from django.views.generic.edit import DeleteView
 from django.contrib.auth.decorators import login_required
 
 from ..auth.decorators import management_only
@@ -21,15 +22,26 @@ def create_event_view(request):
     if request.method == "POST":
         form = CreateEventForm(request.POST)
         if form.is_valid():
-            event_data = form.cleaned_data
-            e = Event.create(event_data["name"], event_data["description"], event_data["location"], event_data["start_time"], event_data["end_time"])
-            ScoreBoard.create(event=e)
+            e = form.save()
+            ScoreBoard.objects.create(event=e)
             messages.info(request, "New event created!")
             return redirect(reverse("base:index"))
-    else:
-        form = CreateEventForm()
-    context = {"form": form}
-    return render(request, "events/create_event_form.html", context)
+        else:
+            for errors in form.errors.get_json_data().values():
+                for error in errors:
+                    messages.error(request, error["message"])
+    return render(request, "events/create_event_form.html", {"form": CreateEventForm()})
+
+
+class DeleteEventView(DeleteView):
+    model = Event
+    template_name = "events/delete.html"
+    success_url = reverse_lazy("base:index")
+    success_message = "Deleted Event Successfully"
+
+    def delete(self, request, *args, **kwargs):
+        messages.success(request, self.success_url)
+        return super().delete(request, *args, **kwargs)
 
 
 @login_required

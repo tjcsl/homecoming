@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+	{{ block.super }}
+	<link rel="stylesheet" href="{% static 'css/landing.css' %}">
+{% endblock %}
+{% block body %}
+<div class="main">
+	<div class="login-box">
+		<p>Are you sure you want to delete Event: "{{ object }}"?</p>
+		<center>
+            <form method="post">
+                {% csrf_token %}
+                <input type="submit" value="I'm sure delete this Event">
+            </form>
+		</center>
+	</div>
+</div>
+
+{% endblock %}

@@ -59,19 +59,19 @@
     <div class="right">
         {% if user|has_management_permissions %}
         <li class="username" style="margin: 0; padding: 0">
-            <i class="fa fa-plus"></i>
             <a href="{% url 'events:create_event_page' %}" style="color: white;">
+                <i class="fa fa-plus"></i>
                 <span class="user-name">Create Event</span>
             </a>
-            <i class="fa fa-times"></i>
             <a href="{% url 'base:reset' %}" style="color: white">
+                <i class="fa fa-times"></i>
                 <span class="user-name">Reset Data</span>
             </a>
         </li>
         {% endif %}
         <li class="username">
-                <span id="username" class="user-name">{{ user.username }}</span>
-                <i class="fa fa-user"></i>
+            <span id="username" class="user-name">{{ user.username }}</span>
+            <a href="{% url 'auth:logout' %}" style="color: white"><i class="fa fa-user" style="color: white"></i></a>
             </div>
         </li>
     </div>

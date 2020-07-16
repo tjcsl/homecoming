@@ -1,10 +1,7 @@
 from django.db import models
 
-# Create your models here.
-
 
 class Event(models.Model):
-    """A Model for an Event in Homecoming Week."""
 
     name = models.CharField(max_length=128)
     description = models.TextField(max_length=48000)
@@ -17,6 +14,9 @@ class Event(models.Model):
         event = cls(name=name, description=description, location=location, start_time=start_time, end_time=end_time)
         event.save()
         return event
+
+    def __str__(self):
+        return f"{self.name}"
     
     class Meta:
         ordering = ("start_time",)
