@@ -7,6 +7,32 @@
     {{ block.super }}
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'vendor/calendar/css/calendar.min.css' %}">
+    <style>
+        @media screen and (max-width: 990px) {
+            .scoreboard .scores .score-group div {
+                margin-left: 5px;
+                margin-right: 5px;
+            }
+            .scoreboard .scores > .score-group > .score-header {
+                width: 66px;
+            }
+            .scoreboard .scoreboard-header span.freshman-title:after {
+                content: "{{ settings.HOMECOMING_YEAR|add:4 }}"
+            }
+            .scoreboard .scoreboard-header span.sophomore-title:after {
+                content: "{{ settings.HOMECOMING_YEAR|add:3 }}"
+            }
+            .scoreboard .scoreboard-header span.junior-title:after {
+                content: "{{ settings.HOMECOMING_YEAR|add:2 }}"
+            }
+            .scoreboard .scoreboard-header span.senior-title:after {
+                content: "{{ settings.HOMECOMING_YEAR|add:1 }}"
+            }
+            .scoreboard .event-name {
+                width:  200px;
+            }
+        }
+    </style>
 {% endblock %}
 
 {% block js %}
