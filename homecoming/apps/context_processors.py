@@ -6,5 +6,5 @@ from django.http import HttpRequest
 
 def base_context(request: HttpRequest) -> Dict[str, Any]:
     return {
-        "settings": settings,
+        "homecoming_year": settings.HOMECOMING_YEAR,
     }
