@@ -97,30 +97,7 @@
     margin-right: 2px;
     width: 86px;
 }
-@media screen and (max-width: 990px) {
-    .scoreboard .scores .score-group div {
-        margin-left: 5px;
-        margin-right: 5px;
-    }
-    .scoreboard .scores > .score-group > .score-header {
-        width: 66px;
-    }
-    .scoreboard .scoreboard-header span.freshman-title:after {
-        content: "2021"
-    }
-    .scoreboard .scoreboard-header span.sophomore-title:after {
-        content: "2020"
-    }
-    .scoreboard .scoreboard-header span.junior-title:after {
-        content: "2019"
-    }
-    .scoreboard .scoreboard-header span.senior-title:after {
-        content: "2018"
-    }
-    .scoreboard .event-name {
-        width:  200px;
-    }
-}
+
 .scoreboard .score {
     width: 50px;
     height: 50px;
