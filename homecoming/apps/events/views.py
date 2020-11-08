@@ -1,11 +1,11 @@
 from datetime import datetime
 
-from django.urls import reverse, reverse_lazy
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
+from django.urls import reverse, reverse_lazy
 from django.views.generic.edit import DeleteView
-from django.contrib.auth.decorators import login_required
 
 from ..auth.decorators import management_only
 from ..scores.models import ScoreBoard
@@ -14,7 +14,7 @@ from .models import Event
 
 
 def unix_time_millis(dt):
-    return int(round(datetime.timestamp(dt)*1000))
+    return int(round(datetime.timestamp(dt) * 1000))
 
 
 @management_only
@@ -49,7 +49,12 @@ def calendar_data_view(request):
     data = {"success": 1, "result": []}
     for event in Event.objects.all():
         data["result"].append(
-            {"id": event.id, "title": event.name, "start": unix_time_millis(event.start_time), "end": unix_time_millis(event.end_time)}
+            {
+                "id": event.id,
+                "title": event.name,
+                "start": unix_time_millis(event.start_time),
+                "end": unix_time_millis(event.end_time),
+            }
         )
     resp = JsonResponse(data)
 

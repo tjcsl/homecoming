@@ -11,12 +11,18 @@ class Event(models.Model):
 
     @classmethod
     def create(cls, name, description, location, start_time, end_time):
-        event = cls(name=name, description=description, location=location, start_time=start_time, end_time=end_time)
+        event = cls(
+            name=name,
+            description=description,
+            location=location,
+            start_time=start_time,
+            end_time=end_time,
+        )
         event.save()
         return event
 
     def __str__(self):
         return f"{self.name}"
-    
+
     class Meta:
         ordering = ("start_time",)

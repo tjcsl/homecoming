@@ -27,5 +27,10 @@ def edit_scores_view(request, event_id):
             return redirect(reverse("base:index"))
     else:
         form = EditScoresForm(instance=scoreboard)
-    context = {"event_form": event_form, "score_form": form, "scoreboard": scoreboard, "id": event_id}
+    context = {
+        "event_form": event_form,
+        "score_form": form,
+        "scoreboard": scoreboard,
+        "id": event_id,
+    }
     return render(request, "scores/edit_scores_page.html", context)
