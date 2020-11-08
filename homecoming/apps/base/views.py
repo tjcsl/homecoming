@@ -1,9 +1,9 @@
-from django.db.models import Sum
-from django.http import JsonResponse
-from django.shortcuts import render, redirect
-from django.urls import reverse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.db.models import Sum
+from django.http import JsonResponse
+from django.shortcuts import redirect, render
+from django.urls import reverse
 
 from ..auth.decorators import management_only
 from ..events.models import Event
@@ -16,10 +16,18 @@ def index_view(request):
         "events": Event.objects.all(),
         "schedule": "schedule",
         "scoreboards": ScoreBoard.objects.all().order_by("event__start_time"),
-        "freshman_total": ScoreBoard.objects.aggregate(Sum("freshman_score"))["freshman_score__sum"],
-        "sophomore_total": ScoreBoard.objects.aggregate(Sum("sophomore_score"))["sophomore_score__sum"],
-        "junior_total": ScoreBoard.objects.aggregate(Sum("junior_score"))["junior_score__sum"],
-        "senior_total": ScoreBoard.objects.aggregate(Sum("senior_score"))["senior_score__sum"],
+        "freshman_total": ScoreBoard.objects.aggregate(Sum("freshman_score"))[
+            "freshman_score__sum"
+        ],
+        "sophomore_total": ScoreBoard.objects.aggregate(Sum("sophomore_score"))[
+            "sophomore_score__sum"
+        ],
+        "junior_total": ScoreBoard.objects.aggregate(Sum("junior_score"))[
+            "junior_score__sum"
+        ],
+        "senior_total": ScoreBoard.objects.aggregate(Sum("senior_score"))[
+            "senior_score__sum"
+        ],
     }
 
     for key in context:
@@ -30,10 +38,18 @@ def index_view(request):
 
 def api_view(request):
     context = {
-        "freshman_total": ScoreBoard.objects.aggregate(Sum("freshman_score"))["freshman_score__sum"],
-        "sophomore_total": ScoreBoard.objects.aggregate(Sum("sophomore_score"))["sophomore_score__sum"],
-        "junior_total": ScoreBoard.objects.aggregate(Sum("junior_score"))["junior_score__sum"],
-        "senior_total": ScoreBoard.objects.aggregate(Sum("senior_score"))["senior_score__sum"],
+        "freshman_total": ScoreBoard.objects.aggregate(Sum("freshman_score"))[
+            "freshman_score__sum"
+        ],
+        "sophomore_total": ScoreBoard.objects.aggregate(Sum("sophomore_score"))[
+            "sophomore_score__sum"
+        ],
+        "junior_total": ScoreBoard.objects.aggregate(Sum("junior_score"))[
+            "junior_score__sum"
+        ],
+        "senior_total": ScoreBoard.objects.aggregate(Sum("senior_score"))[
+            "senior_score__sum"
+        ],
     }
     resp = JsonResponse(context)
     resp["Access-Control-Allow-Origin"] = "*"

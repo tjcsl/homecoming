@@ -1,18 +1,13 @@
 import os
 
 import sentry_sdk
-from sentry_sdk.integrations.django import DjangoIntegration
-
 from django.urls import reverse_lazy
+from sentry_sdk.integrations.django import DjangoIntegration
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = "this is a secrety key"
 DEBUG = True
-ALLOWED_HOSTS = [
-    "localhost",
-    "127.0.0.1",
-    "homecoming.tjhsst.edu"
-]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "homecoming.tjhsst.edu"]
 
 
 INSTALLED_APPS = [
@@ -70,7 +65,9 @@ DATABASES = {
 }
 
 AUTH_PASSWORD_VALIDATORS = [
-    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
+    {
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"
+    },
     {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
     {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
@@ -136,5 +133,7 @@ except ImportError:
 
 if not DEBUG:
     sentry_sdk.init(
-        SENTRY_DSN, integrations=[DjangoIntegration()], send_default_pii=True,
+        SENTRY_DSN,
+        integrations=[DjangoIntegration()],
+        send_default_pii=True,
     )

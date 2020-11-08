@@ -7,22 +7,29 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Event',
+            name="Event",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=128)),
-                ('description', models.TextField(max_length=48000)),
-                ('location', models.CharField(max_length=512)),
-                ('start_time', models.DateTimeField()),
-                ('end_time', models.DateTimeField()),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=128)),
+                ("description", models.TextField(max_length=48000)),
+                ("location", models.CharField(max_length=512)),
+                ("start_time", models.DateTimeField()),
+                ("end_time", models.DateTimeField()),
             ],
             options={
-                'ordering': ('start_time',),
+                "ordering": ("start_time",),
             },
         ),
     ]

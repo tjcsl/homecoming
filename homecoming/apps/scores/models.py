@@ -15,9 +15,15 @@ class ScoreBoard(models.Model):
     senior_score = models.IntegerField(default=0)
 
     @classmethod
-    def create(cls, event, freshman_score=0, sophomore_score=0, junior_score=0, senior_score=0):
+    def create(
+        cls, event, freshman_score=0, sophomore_score=0, junior_score=0, senior_score=0
+    ):
         scoreboard = cls(
-            event=event, freshman_score=freshman_score, sophomore_score=sophomore_score, junior_score=junior_score, senior_score=senior_score
+            event=event,
+            freshman_score=freshman_score,
+            sophomore_score=sophomore_score,
+            junior_score=junior_score,
+            senior_score=senior_score,
         )
         scoreboard.save()
         return scoreboard

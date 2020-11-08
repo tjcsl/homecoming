@@ -1,5 +1,4 @@
 import bleach
-
 from django import forms
 from django.core.exceptions import ValidationError
 
@@ -10,10 +9,12 @@ class CreateEventForm(forms.ModelForm):
 
     description = forms.CharField(widget=forms.Textarea)
     start_time = forms.DateTimeField(
-        input_formats=["%Y/%m/%d %H:%M", "%Y-%m-%d %H:%M:%S"], widget=forms.DateTimeInput(attrs={"class": "datetimepicker"})
+        input_formats=["%Y/%m/%d %H:%M", "%Y-%m-%d %H:%M:%S"],
+        widget=forms.DateTimeInput(attrs={"class": "datetimepicker"}),
     )
     end_time = forms.DateTimeField(
-        input_formats=["%Y/%m/%d %H:%M", "%Y-%m-%d %H:%M:%S"], widget=forms.DateTimeInput(attrs={"class": "datetimepicker"})
+        input_formats=["%Y/%m/%d %H:%M", "%Y-%m-%d %H:%M:%S"],
+        widget=forms.DateTimeInput(attrs={"class": "datetimepicker"}),
     )
 
     class Meta:
@@ -62,6 +63,13 @@ class CreateEventForm(forms.ModelForm):
                 "a": ["href"],
                 "img": ["src", "alt"],
                 "div": ["data-oembed-url"],
-                "iframe": ["allowfullscreen", "mozallowfullscreen", "frameborder", "src", "tabindex", "webkitallowfullscreen"],
+                "iframe": [
+                    "allowfullscreen",
+                    "mozallowfullscreen",
+                    "frameborder",
+                    "src",
+                    "tabindex",
+                    "webkitallowfullscreen",
+                ],
             },
         )
