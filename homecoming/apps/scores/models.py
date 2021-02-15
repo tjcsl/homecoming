@@ -16,8 +16,13 @@ class ScoreBoard(models.Model):
 
     @classmethod
     def create(
-        cls, event, freshman_score=0, sophomore_score=0, junior_score=0, senior_score=0
-    ):
+        cls,
+        event: Event,
+        freshman_score: int = 0,
+        sophomore_score: int = 0,
+        junior_score: int = 0,
+        senior_score: int = 0,
+    ):  # pylint: disable=too-many-arguments
         scoreboard = cls(
             event=event,
             freshman_score=freshman_score,

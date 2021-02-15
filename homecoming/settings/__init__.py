@@ -1,8 +1,9 @@
 import os
 
 import sentry_sdk
-from django.urls import reverse_lazy
 from sentry_sdk.integrations.django import DjangoIntegration
+
+from django.urls import reverse_lazy
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = "this is a secrety key"
@@ -74,7 +75,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 AUTH_USER_MODEL = "authentication.User"
 
-AUTHENTICATION_BACKENDS = ("homecoming.apps.auth.oauth.IonOauth2",)
+AUTHENTICATION_BACKENDS = ["homecoming.apps.auth.oauth.IonOauth2"]
 
 SOCIAL_AUTH_USER_FIELDS = [
     "username",
@@ -126,7 +127,7 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, "static/"),)
 HOMECOMING_YEAR = 2020
 
 try:
-    from .secret import *
+    from .secret import *  # noqa  # pylint: disable=unused-import
 except ImportError:
     DEBUG = True
     SENTRY_DSN = ""

@@ -1,8 +1,8 @@
-from datetime import datetime
+import datetime
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.http import JsonResponse
+from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse, reverse_lazy
 from django.views.generic.edit import DeleteView
@@ -13,17 +13,35 @@ from .forms import CreateEventForm
 from .models import Event
 
 
-def unix_time_millis(dt):
-    return int(round(datetime.timestamp(dt) * 1000))
+def unix_time_millis(datetime_obj: datetime.datetime) -> int:
+    """
+    Returns the number of milliseconds since the Unix epoch.
+
+    Args:
+        datetime_obj: a datetime.datetime object to calculate from
+
+    Returns:
+        an integer
+    """
+    return int(round(datetime.datetime.timestamp(datetime_obj) * 1000))
 
 
 @management_only
-def create_event_view(request):
+def create_event_view(request: HttpRequest) -> HttpResponse:
+    """
+    View to create an event.
+
+    Args:
+        request: HttpRequest
+
+    Returns:
+        HttpResponse
+    """
     if request.method == "POST":
         form = CreateEventForm(request.POST)
         if form.is_valid():
-            e = form.save()
-            ScoreBoard.objects.create(event=e)
+            event = form.save()
+            ScoreBoard.objects.create(event=event)
             messages.info(request, "New event created!")
             return redirect(reverse("base:index"))
         else:
@@ -45,10 +63,10 @@ class DeleteEventView(DeleteView):
 
 
 @login_required
-def calendar_data_view(request):
+def calendar_data_view(request: HttpRequest) -> JsonResponse:
     data = {"success": 1, "result": []}
     for event in Event.objects.all():
-        data["result"].append(
+        data["result"].append(  # type: ignore
             {
                 "id": event.id,
                 "title": event.name,

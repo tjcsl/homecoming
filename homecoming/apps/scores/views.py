@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.http import HttpRequest, HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 
@@ -9,7 +10,17 @@ from .models import ScoreBoard
 
 
 @management_only
-def edit_scores_view(request, event_id):
+def edit_scores_view(request: HttpRequest, event_id: int) -> HttpResponse:
+    """
+    The view to edit the score of an event.
+
+    Args:
+        request: HttpRequest
+        event_id: the ID of the event to edit
+
+    Returns:
+        HttpResponse
+    """
     scoreboard = get_object_or_404(ScoreBoard, event_id=event_id)
     if request.method == "POST" and request.POST.get("event_info"):
         event_form = CreateEventForm(request.POST, instance=scoreboard.event)

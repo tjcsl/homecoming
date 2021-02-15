@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Sum
-from django.http import JsonResponse
+from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse
 
@@ -11,7 +11,7 @@ from ..scores.models import ScoreBoard
 
 
 @login_required
-def index_view(request):
+def index_view(request: HttpRequest) -> HttpResponse:
     context = {
         "events": Event.objects.all(),
         "schedule": "schedule",
@@ -36,7 +36,7 @@ def index_view(request):
     return render(request, "base/home.html", context)
 
 
-def api_view(request):
+def api_view(request: HttpRequest) -> JsonResponse:
     context = {
         "freshman_total": ScoreBoard.objects.aggregate(Sum("freshman_score"))[
             "freshman_score__sum"
@@ -58,7 +58,7 @@ def api_view(request):
 
 
 @management_only
-def reset_view(request):
+def reset_view(request: HttpRequest) -> HttpResponse:
     if request.method == "POST":
         Event.objects.all().delete()
         ScoreBoard.objects.all().delete()

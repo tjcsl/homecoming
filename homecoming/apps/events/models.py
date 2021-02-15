@@ -1,3 +1,5 @@
+import datetime
+
 from django.db import models
 
 
@@ -10,7 +12,14 @@ class Event(models.Model):
     end_time = models.DateTimeField()
 
     @classmethod
-    def create(cls, name, description, location, start_time, end_time):
+    def create(
+        cls,
+        name: str,
+        description: str,
+        location: str,
+        start_time: datetime.datetime,
+        end_time: datetime.datetime,
+    ):  # pylint: disable=too-many-arguments
         event = cls(
             name=name,
             description=description,
