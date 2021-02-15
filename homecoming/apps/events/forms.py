@@ -1,4 +1,5 @@
 import bleach
+
 from django import forms
 from django.core.exceptions import ValidationError
 
@@ -22,8 +23,8 @@ class CreateEventForm(forms.ModelForm):
         fields = ["name", "description", "location", "start_time", "end_time"]
 
     def clean(self):
-        cd = self.cleaned_data
-        if cd["start_time"] > cd["end_time"]:
+        cleaned_data = self.cleaned_data
+        if cleaned_data["start_time"] > cleaned_data["end_time"]:
             raise ValidationError("Start time cannot be after end time!")
 
     def clean_description(self):
