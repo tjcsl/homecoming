@@ -124,7 +124,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, "serve/")
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "static/"),)
 
 
-HOMECOMING_YEAR = 2020
+HOMECOMING_YEAR = 2021
 
 try:
     from .secret import *  # noqa  # pylint: disable=unused-import
