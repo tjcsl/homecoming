@@ -125,6 +125,7 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, "static/"),)
 
 
 HOMECOMING_YEAR = 2020
+HOMECOMING_DISPLAY_YEAR = 2021  # used if homecoming occurs in the spring
 
 try:
     from .secret import *  # noqa  # pylint: disable=unused-import
