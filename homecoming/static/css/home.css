@@ -254,3 +254,7 @@ h3 {
     font-weight: normal;
     margin-right: 5px;
 }
+
+a.event-item {
+    color: #000000 !important;
+}
