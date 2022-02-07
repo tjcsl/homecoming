@@ -28,6 +28,9 @@ def index_view(request: HttpRequest) -> HttpResponse:
         "senior_total": ScoreBoard.objects.aggregate(Sum("senior_score"))[
             "senior_score__sum"
         ],
+        "staff_total": ScoreBoard.objects.aggregate(Sum("staff_score"))[
+            "staff_score__sum"
+        ],
     }
 
     for key in context:
@@ -49,6 +52,9 @@ def api_view(request: HttpRequest) -> JsonResponse:
         ],
         "senior_total": ScoreBoard.objects.aggregate(Sum("senior_score"))[
             "senior_score__sum"
+        ],
+        "staff_total": ScoreBoard.objects.aggregate(Sum("staff_score"))[
+            "staff_score__sum"
         ],
     }
     resp = JsonResponse(context)

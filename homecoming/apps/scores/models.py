@@ -13,6 +13,7 @@ class ScoreBoard(models.Model):
     sophomore_score = models.IntegerField(default=0)
     junior_score = models.IntegerField(default=0)
     senior_score = models.IntegerField(default=0)
+    staff_score = models.IntegerField(default=0)
 
     @classmethod
     def create(
@@ -22,6 +23,7 @@ class ScoreBoard(models.Model):
         sophomore_score: int = 0,
         junior_score: int = 0,
         senior_score: int = 0,
+        staff_score: int = 0
     ):  # pylint: disable=too-many-arguments
         scoreboard = cls(
             event=event,
@@ -29,6 +31,7 @@ class ScoreBoard(models.Model):
             sophomore_score=sophomore_score,
             junior_score=junior_score,
             senior_score=senior_score,
+            staff_score=staff_score,
         )
         scoreboard.save()
         return scoreboard
