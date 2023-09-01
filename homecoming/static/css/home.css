@@ -136,8 +136,34 @@
     width: 300px;
 }
 
+.panel-wide {
+    vertical-align: top;
+    margin-bottom: 10px;
+    width: 80%;
+}
+
 .events {
     text-align: center;
+}
+
+.announcements {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.scores-announcements {
+    display: flex;
+    justify-content: space-around;
+}
+
+@media (max-width: 768px) {
+    .scores-announcements {
+        flex-direction: column-reverse;
+        align-items: center;
+    }
 }
 
 h2 {
@@ -151,7 +177,7 @@ h3 {
     height: 20px;
 }
 
-.events .panel-heading a {
+.panel-heading a {
     max-width: 292px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -159,7 +185,7 @@ h3 {
     display: inline-block;
 }
 
-.events .panel {
+.panel, .panel-wide {
     text-align: left;
     display: inline-block;
     margin: 5px;
