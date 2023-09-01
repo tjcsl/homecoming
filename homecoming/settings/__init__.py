@@ -124,8 +124,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, "serve/")
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "static/"),)
 
 
-HOMECOMING_YEAR = 2022
-HOMECOMING_DISPLAY_YEAR = 2022  # used if homecoming occurs in the spring
+HOMECOMING_YEAR = 2023
+HOMECOMING_DISPLAY_YEAR = 2023  # used if homecoming occurs in the spring
 
 try:
     from .secret import *  # noqa  # pylint: disable=unused-import
