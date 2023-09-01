@@ -28,6 +28,7 @@ def index_view(request: HttpRequest) -> HttpResponse:
         "senior_total": ScoreBoard.objects.aggregate(Sum("senior_score"))[
             "senior_score__sum"
         ],
+        "class_group": request.user.class_group,
     }
 
     for key in context:

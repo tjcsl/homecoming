@@ -7,6 +7,15 @@ class User(AbstractUser):
 
     is_teacher = models.BooleanField(default=False, null=False)
     is_student = models.BooleanField(default=True, null=False)
+    is_class_group_admin = models.BooleanField(default=False, null=False)
+
+    @property
+    def class_group(self):
+        for class_group in ClassGroup.objects.all():
+            if class_group.has_user(self):
+                return class_group
+
+        return None
 
     @property
     def has_management_permission(self) -> bool:
@@ -21,3 +30,16 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.short_name
+
+
+class ClassGroup(models.Model):
+    name = models.CharField(max_length=128)
+    username_prefix = models.CharField(max_length=4)  # e.g. "2024"
+
+    message = models.TextField(max_length=48000, blank=True, null=True)
+
+    def has_user(self, user: User) -> bool:
+        return user.username.startswith(self.username_prefix)
+
+    def __str__(self):
+        return self.name
