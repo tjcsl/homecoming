@@ -4,18 +4,14 @@
 
 {% block css %}
 {{ block.super }}
-    <link rel="stylesheet" type="text/css" href="{% static 'vendor/datetimepicker/css/jquery.datetimepicker.min.css' %}" />
 {% endblock %}
 
 {% block js %}
     {{ block.super }}
-    <script type="text/javascript" src="{% static 'vendor/datetimepicker/js/jquery.datetimepicker.full.min.js' %}"></script>
     <script src="{% static 'vendor/ckeditor/ckeditor.js' %}"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-            $.datetimepicker.setLocale('en');
-            $(".datetimepicker").datetimepicker();
-            CKEDITOR.replace("id_description", {
+            CKEDITOR.replace("id_message", {
                 customConfig: "{% static 'vendor/ckeditor/config.js' %}",
                 skin: "bootstrapck,{% static 'vendor/ckeditor/skins/bootstrapck/' %}",
             });
@@ -33,7 +29,7 @@
         <p>
             {{ field.label }}:<br />
             {{ field }}
-            {% if field.auto_id == "id_description" %}
+            {% if field.auto_id == "id_message" %}
             <div>You can use <a href="https://imgur.com/">Imgur</a> or another file hosting site to host images. You can host videos on <a href="https://youtube.com/">Youtube</a> and then click the Insert Media Embed (<span class="cke_button_icon cke_button__embed_icon" style="float:none">&nbsp;</span></span>) button to insert them.</div>
             {% endif %}
             {{ field.errors }}
@@ -42,15 +38,7 @@
 
         <input type="submit" value="Submit" />
     </form>
-    {% if id %}
-        <button style="color: red" onclick="window.location.href='{% url 'announcements:delete' id %}'">Delete This Announcement</button>
-    {% endif %}
+    <button style="color: red" onclick="window.location.href='{% url 'announcements:delete' id %}'">Delete This Announcement</button>
 
 </div>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $.datetimepicker.setLocale('en');
-        $(".datetimepicker").datetimepicker();
-    });
-</script>
 {% endblock %}
