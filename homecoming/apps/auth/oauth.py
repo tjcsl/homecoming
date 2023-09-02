@@ -12,7 +12,7 @@ class IonOauth2(BaseOAuth2):  # pylint: disable=abstract-method
         return ["read"]
 
     def get_user_details(self, response):
-        admin = response["is_eighth_admin"] or response["is_announcements_admin"]
+        admin = response["is_eighth_admin"]
         return {
             "id": response["id"],
             "username": response["ion_username"],
