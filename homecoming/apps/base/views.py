@@ -6,8 +6,10 @@ from django.db.models import Sum
 from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse
+from django.utils import timezone
 
 from ..auth.decorators import management_only
+from ..auth.models import ClassGroup
 from ..announcements.models import Announcement
 from ..events.models import Event
 from ..scores.models import ScoreBoard
@@ -15,9 +17,13 @@ from ..scores.models import ScoreBoard
 
 @login_required
 def index_view(request: HttpRequest) -> HttpResponse:
+    # Combine class group announcements and global announcements
+    all_announcements = request.user.class_group.announcements.all() | Announcement.objects.filter(
+        class_group__username_prefix="_"
+    )
     announcements = (
-        request.user.class_group.announcements.filter(end_time__gte=datetime.datetime.now())
-        .filter(start_time__lte=datetime.datetime.now())
+        all_announcements.filter(end_time__gte=timezone.now())
+        .filter(start_time__lte=timezone.now())
         .order_by("-start_time")
     )
     context = {
@@ -35,6 +41,9 @@ def index_view(request: HttpRequest) -> HttpResponse:
         "junior_total": ScoreBoard.objects.aggregate(Sum("junior_score"))["junior_score__sum"],
         "senior_total": ScoreBoard.objects.aggregate(Sum("senior_score"))["senior_score__sum"],
     }
+
+    if ClassGroup.objects.filter(username_prefix="_").exists():
+        context["global_group"] = ClassGroup.objects.get(username_prefix="_")
 
     for key in context:
         if key.endswith("total") and not context[key]:
