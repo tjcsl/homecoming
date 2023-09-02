@@ -20,6 +20,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "social_django",
     "homecoming.apps",
+    "homecoming.apps.announcements.apps.AnnouncementsConfig",
     "homecoming.apps.auth.apps.AuthConfig",
     "homecoming.apps.base.apps.BaseConfig",
     "homecoming.apps.scores.apps.ScoresConfig",
@@ -66,9 +67,7 @@ DATABASES = {
 }
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"
-    },
+    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
     {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
     {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},

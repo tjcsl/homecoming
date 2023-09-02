@@ -58,7 +58,7 @@ class DeleteEventView(DeleteView):
     success_message = "Deleted Event Successfully"
 
     def delete(self, request, *args, **kwargs):
-        messages.success(request, self.success_url)
+        messages.success(request, self.success_message)
         return super().delete(request, *args, **kwargs)
 
 
