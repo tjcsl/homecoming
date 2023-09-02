@@ -121,6 +121,23 @@
                     {{ class_group.message|safe }}
                 </div>
             </div>
+            {% for announcement in announcements %}
+                <div class="panel-wide">
+                    <div class="panel-heading">
+                        <h3>
+                            {% if user|has_management_permissions %}
+                                <a href="{% url 'announcements:edit_announcement' announcement.id %}" class="can-edit" style="color: white">{{ announcement.name }}</a>
+                            {% else %}
+                                {{ announcement.name }}
+                            {% endif %}
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        {{ announcement.description|safe }}
+                        <div class="date">{{ announcement.start_time|date:"h:i A m/d/Y" }}</div>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
     {% endif %}
 </div>

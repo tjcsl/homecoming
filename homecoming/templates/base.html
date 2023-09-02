@@ -59,6 +59,10 @@
     <div class="right">
         {% if user|has_management_permissions %}
         <li class="username" style="margin: 0; padding: 0">
+            <a href="{% url 'announcements:create_announcement_page' %}" style="color: white">
+                <i class="fa fa-plus"></i>
+                <span class="user-name">Create Announcement</span>
+            </a>
             <a href="{% url 'events:create_event_page' %}" style="color: white;">
                 <i class="fa fa-plus"></i>
                 <span class="user-name">Create Event</span>
