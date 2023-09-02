@@ -111,6 +111,22 @@
     {% if class_group %}
         <div class="announcements">
             <h2>Class Announcements</h2>
+            {% if global_group %}
+                <div class="panel-wide">
+                    <div class="panel-heading">
+                        <h3>
+                            {% if user|has_management_permissions or user.is_class_group_admin %}
+                                <a href="{% url 'auth:edit_class_group' global_group.id %}" class="can-edit" style="color: white">{{ global_group.name }}</a>
+                            {% else %}
+                                {{ global_group.name }}
+                            {% endif %}
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        {{ global_group.message|safe }}
+                    </div>
+                </div>
+            {% endif %}
             <div class="panel-wide">
                 <div class="panel-heading">
                     <h3>
@@ -138,7 +154,7 @@
                     </div>
                     <div class="panel-body">
                         {{ announcement.description|safe }}
-                        <div class="date">{{ announcement.start_time|date:"h:i A m/d/Y" }}</div>
+                        <div class="date"><strong>{{ announcement.class_group.name }} - </strong> {{ announcement.start_time|date:"h:i A m/d/Y" }}</div>
                     </div>
                 </div>
             {% endfor %}

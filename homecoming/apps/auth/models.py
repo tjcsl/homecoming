@@ -40,6 +40,8 @@ class ClassGroup(models.Model):
     message = models.TextField(max_length=48000, blank=True, null=True)
 
     def has_user(self, user: User) -> bool:
+        if self.username_prefix == "_":
+            return True
         return user.username.startswith(self.username_prefix)
 
     def __str__(self):
