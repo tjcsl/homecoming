@@ -2,14 +2,12 @@ import datetime
 
 from django import http
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
-from django.http import HttpRequest, HttpResponse, JsonResponse
-from django.shortcuts import redirect, render, get_object_or_404
+from django.http import HttpRequest, HttpResponse
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse, reverse_lazy
 from django.views.generic.edit import DeleteView
 
-from ..auth.decorators import management_only, management_or_class_group_admin_only
-from ..scores.models import ScoreBoard
+from ..auth.decorators import management_or_class_group_admin_only
 from .forms import AnnouncementForm
 from .models import Announcement
 
@@ -83,7 +81,9 @@ def edit_announcement_view(request: HttpRequest, announcement_id: int) -> HttpRe
         raise http.Http404
 
     if request.method == "POST":
-        form = AnnouncementForm(data=request.POST, instance=announcement, user=request.user)
+        form = AnnouncementForm(
+            data=request.POST, instance=announcement, user=request.user
+        )
         if form.is_valid():
             form.save()
             messages.info(request, "Announcement edited!")
@@ -92,7 +92,9 @@ def edit_announcement_view(request: HttpRequest, announcement_id: int) -> HttpRe
         form = AnnouncementForm(instance=announcement, user=request.user)
 
     return render(
-        request, "announcements/announcement_form.html", {"form": form, "id": announcement_id}
+        request,
+        "announcements/announcement_form.html",
+        {"form": form, "id": announcement_id},
     )
 
 
