@@ -108,14 +108,14 @@
             </div>
         </div>
     </div>
-    {% if class_group %}
+    {% if class_group or global_group %}
         <div class="announcements">
             <h2>Class Announcements</h2>
             {% if global_group %}
                 <div class="panel-wide">
                     <div class="panel-heading">
                         <h3>
-                            {% if user|has_management_permissions or user.is_class_group_admin %}
+                            {% if user|has_management_permissions %}
                                 <a href="{% url 'auth:edit_class_group' global_group.id %}" class="can-edit" style="color: white">{{ global_group.name }}</a>
                             {% else %}
                                 {{ global_group.name }}
@@ -127,25 +127,27 @@
                     </div>
                 </div>
             {% endif %}
-            <div class="panel-wide">
-                <div class="panel-heading">
-                    <h3>
-                        {% if user|has_management_permissions or user.is_class_group_admin %}
-                            <a href="{% url 'auth:edit_class_group' class_group.id %}" class="can-edit" style="color: white">{{ class_group.name }}</a>
-                        {% else %}
-                            {{ class_group.name }}
-                        {% endif %}
-                    </h3>
-                </div>
-                <div class="panel-body">
-                    {{ class_group.message|safe }}
-                </div>
-            </div>
-            {% for announcement in announcements %}
+            {% if class_group %}
                 <div class="panel-wide">
                     <div class="panel-heading">
                         <h3>
                             {% if user|has_management_permissions or user.is_class_group_admin %}
+                                <a href="{% url 'auth:edit_class_group' class_group.id %}" class="can-edit" style="color: white">{{ class_group.name }}</a>
+                            {% else %}
+                                {{ class_group.name }}
+                            {% endif %}
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        {{ class_group.message|safe }}
+                    </div>
+                </div>
+            {% endif %}
+            {% for announcement in announcements %}
+                <div class="panel-wide">
+                    <div class="panel-heading">
+                        <h3>
+                            {% if user|has_management_permissions or user.is_class_group_admin and announcement.class_group.username_prefix != "_" %}
                                 <a href="{% url 'announcements:edit_announcement' announcement.id %}" class="can-edit" style="color: white">{{ announcement.name }}</a>
                             {% else %}
                                 {{ announcement.name }}

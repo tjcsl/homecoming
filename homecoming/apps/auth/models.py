@@ -20,7 +20,9 @@ class User(AbstractUser):
 
     @property
     def has_management_permission(self) -> bool:
-        return self.is_hoco_admin or self.is_teacher or self.is_staff or self.is_superuser
+        return (
+            self.is_hoco_admin or self.is_teacher or self.is_staff or self.is_superuser
+        )
 
     @property
     def short_name(self):
@@ -40,8 +42,6 @@ class ClassGroup(models.Model):
     message = models.TextField(max_length=48000, blank=True, null=True)
 
     def has_user(self, user: User) -> bool:
-        if self.username_prefix == "_":
-            return True
         return user.username.startswith(self.username_prefix)
 
     def __str__(self):

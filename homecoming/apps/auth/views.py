@@ -1,14 +1,12 @@
 from django import http
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
-from django.http import HttpRequest, HttpResponse, JsonResponse
-from django.shortcuts import redirect, render, get_object_or_404
-from django.urls import reverse, reverse_lazy
-from django.views.generic.edit import DeleteView
+from django.http import HttpRequest, HttpResponse
+from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse
 
 from .decorators import management_or_class_group_admin_only
-from .models import ClassGroup
 from .forms import ClassGroupForm
+from .models import ClassGroup
 
 
 def login(request: HttpRequest) -> HttpResponse:
@@ -35,4 +33,6 @@ def edit_class_group_view(request: HttpRequest, class_group_id: int) -> HttpResp
     else:
         form = ClassGroupForm(instance=class_group)
 
-    return render(request, "auth/class_group_form.html", {"form": form, "id": class_group_id})
+    return render(
+        request, "auth/class_group_form.html", {"form": form, "id": class_group_id}
+    )

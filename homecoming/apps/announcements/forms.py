@@ -26,9 +26,9 @@ class AnnouncementForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
 
         if not user.has_management_permission:
-            self.fields["class_group"].queryset = self.fields["class_group"].queryset.filter(
-                id=user.class_group.id
-            )
+            self.fields["class_group"].queryset = self.fields[
+                "class_group"
+            ].queryset.filter(id=user.class_group.id)
 
     def clean(self):
         cleaned_data = self.cleaned_data

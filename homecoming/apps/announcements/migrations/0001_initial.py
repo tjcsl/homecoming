@@ -9,22 +9,37 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('authentication', '0004_user_is_hoco_admin'),
+        ("authentication", "0004_user_is_hoco_admin"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Announcement',
+            name="Announcement",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=128)),
-                ('description', models.TextField(max_length=48000)),
-                ('start_time', models.DateTimeField()),
-                ('end_time', models.DateTimeField()),
-                ('class_group', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='announcements', to='authentication.classgroup')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=128)),
+                ("description", models.TextField(max_length=48000)),
+                ("start_time", models.DateTimeField()),
+                ("end_time", models.DateTimeField()),
+                (
+                    "class_group",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="announcements",
+                        to="authentication.classgroup",
+                    ),
+                ),
             ],
             options={
-                'ordering': ('start_time',),
+                "ordering": ("start_time",),
             },
         ),
     ]

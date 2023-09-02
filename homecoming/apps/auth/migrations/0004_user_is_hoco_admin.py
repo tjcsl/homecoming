@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('authentication', '0003_auto_20230901_1648'),
+        ("authentication", "0003_auto_20230901_1648"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='user',
-            name='is_hoco_admin',
+            model_name="user",
+            name="is_hoco_admin",
             field=models.BooleanField(default=False),
         ),
     ]

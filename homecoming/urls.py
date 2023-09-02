@@ -5,7 +5,8 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("oauth/", include("social_django.urls", namespace="social")),
     path(
-        "announcements/", include("homecoming.apps.announcements.urls", namespace="announcements")
+        "announcements/",
+        include("homecoming.apps.announcements.urls", namespace="announcements"),
     ),
     path("", include("homecoming.apps.auth.urls", namespace="auth")),
     path("", include("homecoming.apps.base.urls", namespace="base")),
