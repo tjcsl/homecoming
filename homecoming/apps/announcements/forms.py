@@ -22,6 +22,14 @@ class AnnouncementForm(forms.ModelForm):
         model = Announcement
         fields = ["name", "class_group", "description", "start_time", "end_time"]
 
+    def __init__(self, user, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        if not user.has_management_permission:
+            self.fields["class_group"].queryset = self.fields["class_group"].queryset.filter(
+                id=user.class_group.id
+            )
+
     def clean(self):
         cleaned_data = self.cleaned_data
         if cleaned_data["start_time"] > cleaned_data["end_time"]:
