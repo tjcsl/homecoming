@@ -57,20 +57,22 @@
     </div>
     </a>
     <div class="right">
-        {% if user|has_management_permissions %}
+        {% if user|has_management_permissions or user.is_class_group_admin %}
         <li class="username" style="margin: 0; padding: 0">
             <a href="{% url 'announcements:create_announcement_page' %}" style="color: white">
                 <i class="fa fa-plus"></i>
                 <span class="user-name">Create Announcement</span>
             </a>
-            <a href="{% url 'events:create_event_page' %}" style="color: white;">
-                <i class="fa fa-plus"></i>
-                <span class="user-name">Create Event</span>
-            </a>
-            <a href="{% url 'base:reset' %}" style="color: white">
-                <i class="fa fa-times"></i>
-                <span class="user-name">Reset Data</span>
-            </a>
+            {% if user|has_management_permissions %}
+                <a href="{% url 'events:create_event_page' %}" style="color: white;">
+                    <i class="fa fa-plus"></i>
+                    <span class="user-name">Create Event</span>
+                </a>
+                <a href="{% url 'base:reset' %}" style="color: white">
+                    <i class="fa fa-times"></i>
+                    <span class="user-name">Reset Data</span>
+                </a>
+            {% endif %}
         </li>
         {% endif %}
         <li class="username">
