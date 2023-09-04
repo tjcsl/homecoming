@@ -2,6 +2,7 @@ import bleach
 
 from django import forms
 
+from ..forms import bleach_clean
 from .models import ClassGroup
 
 
@@ -14,49 +15,4 @@ class ClassGroupForm(forms.ModelForm):
         fields = ["name", "username_prefix", "message"]
 
     def clean_message(self):
-        data = self.cleaned_data["message"]
-        return bleach.clean(
-            data,
-            tags=[
-                "a",
-                "b",
-                "div",
-                "iframe",
-                "strong",
-                "img",
-                "table",
-                "thead",
-                "tbody",
-                "th",
-                "tr",
-                "td",
-                "hr",
-                "br",
-                "b",
-                "i",
-                "u",
-                "s",
-                "sup",
-                "sub",
-                "p",
-                "ul",
-                "ol",
-                "li",
-                "em",
-                "blockquote",
-            ],
-            attributes={
-                "*": ["title", "style"],
-                "a": ["href"],
-                "img": ["src", "alt"],
-                "div": ["data-oembed-url"],
-                "iframe": [
-                    "allowfullscreen",
-                    "mozallowfullscreen",
-                    "frameborder",
-                    "src",
-                    "tabindex",
-                    "webkitallowfullscreen",
-                ],
-            },
-        )
+        return bleach_clean(self.cleaned_data["message"])

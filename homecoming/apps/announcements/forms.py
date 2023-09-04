@@ -3,6 +3,7 @@ import bleach
 from django import forms
 from django.core.exceptions import ValidationError
 
+from ..forms import bleach_clean
 from .models import Announcement
 
 
@@ -36,49 +37,4 @@ class AnnouncementForm(forms.ModelForm):
             raise ValidationError("Start time cannot be after end time!")
 
     def clean_description(self):
-        data = self.cleaned_data["description"]
-        return bleach.clean(
-            data,
-            tags=[
-                "a",
-                "b",
-                "div",
-                "iframe",
-                "strong",
-                "img",
-                "table",
-                "thead",
-                "tbody",
-                "th",
-                "tr",
-                "td",
-                "hr",
-                "br",
-                "b",
-                "i",
-                "u",
-                "s",
-                "sup",
-                "sub",
-                "p",
-                "ul",
-                "ol",
-                "li",
-                "em",
-                "blockquote",
-            ],
-            attributes={
-                "*": ["title", "style"],
-                "a": ["href"],
-                "img": ["src", "alt"],
-                "div": ["data-oembed-url"],
-                "iframe": [
-                    "allowfullscreen",
-                    "mozallowfullscreen",
-                    "frameborder",
-                    "src",
-                    "tabindex",
-                    "webkitallowfullscreen",
-                ],
-            },
-        )
+        return bleach_clean(self.cleaned_data["description"])
