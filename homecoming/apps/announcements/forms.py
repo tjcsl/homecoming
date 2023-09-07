@@ -26,7 +26,7 @@ class AnnouncementForm(forms.ModelForm):
     def __init__(self, user, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        if not user.has_management_permission:
+        if not user.has_management_permission and not user.is_hoco_admin:
             self.fields["class_group"].queryset = self.fields[
                 "class_group"
             ].queryset.filter(id=user.class_group.id)

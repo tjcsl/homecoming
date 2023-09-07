@@ -20,6 +20,7 @@ def edit_class_group_view(request: HttpRequest, class_group_id: int) -> HttpResp
     if (
         request.user.is_class_group_admin
         and not request.user.has_management_permission
+        and not request.user.is_hoco_admin
         and request.user.class_group != class_group
     ):
         raise http.Http404

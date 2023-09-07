@@ -76,6 +76,7 @@ def edit_announcement_view(request: HttpRequest, announcement_id: int) -> HttpRe
     if (
         request.user.is_class_group_admin
         and not request.user.has_management_permission
+        and not request.user.is_hoco_admin
         and request.user.class_group != announcement.class_group
     ):
         raise http.Http404
@@ -105,7 +106,11 @@ class DeleteAnnouncementView(DeleteView):
     success_message = "Deleted Announcement Successfully"
 
     def delete(self, request, *args, **kwargs):
-        if request.user.class_group != self.get_object().class_group:
+        if (
+            not request.user.has_management_permission
+            and not request.user.is_hoco_admin
+            and request.user.class_group != self.get_object().class_group
+        ):
             raise http.Http404
         messages.success(request, self.success_message)
         return super().delete(request, *args, **kwargs)
